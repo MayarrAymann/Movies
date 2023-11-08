@@ -1,24 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:movies/models/watchlist_model.dart';
+import 'package:movies/pages/watchlist/widgets/watchlist_item.dart';
 
 class WatchListView extends StatelessWidget {
-  const WatchListView({super.key});
+  WatchListView({super.key});
+
+  List<WatchlistItem> items = [
+    WatchlistItem(
+      watchlistModel: WatchlistModel(
+          title: 'Alita Battle Angel',
+          year: '2019',
+          actors: 'Rosa Salazar, Christoph Waltz',
+          imagePath: 'assets/images/MovieCover.png'),
+    ),
+    WatchlistItem(
+      watchlistModel: WatchlistModel(
+          title: 'Alita Battle Angel',
+          year: '2019',
+          actors: 'Rosa Salazar, Christoph Waltz',
+          imagePath: 'assets/images/MovieCover.png'),
+    ),
+    WatchlistItem(
+      watchlistModel: WatchlistModel(
+          title: 'Alita Battle Angel',
+          year: '2019',
+          actors: 'Rosa Salazar, Christoph Waltz',
+          imagePath: 'assets/images/MovieCover.png'),
+    ),
+    WatchlistItem(
+      watchlistModel: WatchlistModel(
+          title: 'Alita Battle Angel',
+          year: '2019',
+          actors: 'Rosa Salazar, Christoph Waltz',
+          imagePath: 'assets/images/MovieCover.png'),
+    ),
+    WatchlistItem(
+      watchlistModel: WatchlistModel(
+          title: 'Alita Battle Angel',
+          year: '2019',
+          actors: 'Rosa Salazar, Christoph Waltz',
+          imagePath: 'assets/images/MovieCover.png'),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Center(
-          child: Text(
-            'WatchList View',
+    return Padding(
+      padding: const EdgeInsets.only(top: 70, left: 15, right: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'Watchlist',
             style: TextStyle(
-                color: Color(0xffB5B4B4),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
+              fontFamily: 'Inter',
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontSize: 22,
+            ),
           ),
-        )
-      ],
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) => items[index],
+              itemCount: items.length,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

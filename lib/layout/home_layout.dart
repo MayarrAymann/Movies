@@ -20,7 +20,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     const HomeView(),
     const SearchView(),
     BrowseView(),
-    const WatchListView(),
+    WatchListView(),
   ];
 
   @override
