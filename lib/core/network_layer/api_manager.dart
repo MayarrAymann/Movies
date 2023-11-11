@@ -25,7 +25,7 @@ class ApiManager {
 
     return categoryModel;
   }
-  static Future<Results>fetchPopular() async {
+  static Future<Results>? fetchPopular() async {
     Uri url = Uri.https(
         Constants.baseURL,
         "/3/movie/popular",
