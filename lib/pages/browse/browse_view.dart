@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movies/core/network_layer/api_manager.dart';
 import 'package:movies/pages/browse/widgets/category_item.dart';
 
 import '../../models/category_model.dart';
 
-class BrowseView extends StatelessWidget {
+class BrowseView extends StatefulWidget {
   BrowseView({super.key});
 
-  List<CategoryModel> categories = [
-    CategoryModel(id: 1, name: 'Action'),
-    CategoryModel(id: 2, name: 'Romantic'),
-    CategoryModel(id: 3, name: 'Comedy'),
-    CategoryModel(id: 4, name: 'Scientific'),
-    CategoryModel(id: 5, name: 'Adult'),
-    CategoryModel(id: 1, name: 'Action'),
-    CategoryModel(id: 2, name: 'Romantic'),
-    CategoryModel(id: 3, name: 'Comedy'),
-    CategoryModel(id: 4, name: 'Scientific'),
-    CategoryModel(id: 5, name: 'Adult'),
-  ];
+  @override
+  State<BrowseView> createState() => _BrowseViewState();
+}
 
+class _BrowseViewState extends State<BrowseView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,19 +31,47 @@ class BrowseView extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 7 / 4,
-                mainAxisSpacing: 35,
-                crossAxisSpacing: 35,
-              ),
-              itemBuilder: (context, index) =>
-                  CategoryItem(model: categories[index]),
-              itemCount: categories.length,
-              padding: const EdgeInsets.symmetric(vertical: 10),
-            ),
+          FutureBuilder(
+            future: ApiManager.fetchCategories(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(snapshot.error.toString()),
+                    ],
+                  ),
+                );
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        color: Color(0xffB5B4B4),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              CategoryModel categories = snapshot.data!;
+              return Expanded(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 7 / 4,
+                    mainAxisSpacing: 35,
+                    crossAxisSpacing: 35,
+                  ),
+                  itemBuilder: (context, index) =>
+                      CategoryItem(model: categories.genres[index]),
+                  itemCount: categories.genres.length,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                ),
+              );
+            },
           ),
         ],
       ),
