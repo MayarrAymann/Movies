@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/pages/home/widgets/popular_movie_item.dart';
 
 import '../../core/network_layer/api_manager.dart';
-import '../../models/Popular_model.dart';
+import '../../models/popular_model.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

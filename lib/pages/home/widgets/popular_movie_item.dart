@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:movies/core/constants.dart';
-import 'package:movies/models/Popular_model.dart';
+import 'package:movies/models/popular_model.dart';
 
 class PopularMovieItem extends StatelessWidget{
   final Results results;
@@ -18,8 +18,8 @@ class PopularMovieItem extends StatelessWidget{
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Image.network(
-                    "${Constants.imageUrl},${results.posterPath}",
+                  Image.asset(
+                    "assets/images/MovieCover.png",
                     fit: BoxFit.fill,
                   ),
                   GestureDetector(
