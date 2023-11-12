@@ -1,23 +1,22 @@
 class PopularModel {
   int? page;
-  List<Results>? results;
+  List<Results> results = [];
   int? totalPages;
   int? totalResults;
 
   PopularModel({
       this.page, 
-      this.results, 
+      required this.results,
       this.totalPages, 
       this.totalResults,});
 
   PopularModel.fromJson(dynamic json) {
     page = json['page'];
-    if (json['results'] != null) {
-      results = [];
+      results = (json['results']);
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results.add(Results.fromJson(v));
       });
-    }
+
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }

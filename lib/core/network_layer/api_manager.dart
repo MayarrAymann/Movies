@@ -27,7 +27,7 @@ class ApiManager {
 
     return categoryModel;
   }
-
+  
   static Future<Results> fetchPopular() async {
     Uri url = Uri.https(Constants.baseURL, "/3/movie/popular", {
       "api_key": Constants.apiKey,
@@ -37,7 +37,7 @@ class ApiManager {
     Results popularModel = Results.fromJson(jsonData);
     return popularModel;
   }
-
+  
   static Future<SearchModel> discoverMoviesByGenre(
       {required int genreId}) async {
     Uri uri = Uri.https(
