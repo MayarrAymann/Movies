@@ -1,11 +1,18 @@
+import 'genre_model.dart';
+
 class CategoryModel {
-  final int id;
-  final String name;
-  String? imagePath;
+  final List<GenreModel> genres;
 
   CategoryModel({
-    required this.id,
-    required this.name,
-    this.imagePath,
+    required this.genres,
   });
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    return CategoryModel(
+        genres: (json['genres'] as List)
+            .map((e) => GenreModel.fromJson(e))
+            .toList());
+  }
 }
+
+

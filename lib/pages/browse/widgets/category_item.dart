@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/category_model.dart';
+import '../../../models/genre_model.dart';
 
 class CategoryItem extends StatelessWidget {
-  final CategoryModel model;
+  final GenreModel model;
 
   const CategoryItem({
     super.key,
