@@ -5,19 +5,18 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    var theme = Theme.of(context);
+
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Center(
           child: Text(
             'Search View',
-            style: TextStyle(
-                color: Color(0xffB5B4B4),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
+            style: theme.textTheme.titleLarge,
           ),
-        )
+        ),
       ],
     );
   }
