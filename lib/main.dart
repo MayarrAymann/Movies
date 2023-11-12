@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/theme/application_theme.dart';
 import 'package:movies/layout/home_layout.dart';
+import 'package:movies/pages/browse/widgets/genre_view.dart';
 import 'package:movies/pages/splash/splash_view.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashView.routeName: (context) => const SplashView(),
         HomeLayout.routeName: (context) => const HomeLayout(),
+        GenreView.routeName: (context) => const GenreView(),
       },
     );
   }
