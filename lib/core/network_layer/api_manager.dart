@@ -46,13 +46,15 @@ class ApiManager {
       {
         'api_key': Constants.apiKey,
         'with_genres': genreId.toString(),
+        'page': '1',
       },
     );
 
     var response = await http.get(uri);
 
-    print(
-        'Discover Movies: *-*-*-**-*-*-*-*-*-*-*-*-*-*-*\n${jsonDecode(response.body)}');
+    print('Discover Movies: *-*-*-**-*-*-*-*-*-*-*-*-*-*-*\n${response.body}');
+
+    print('end of response');
 
     SearchModel searchModel = SearchModel.fromJson(jsonDecode(response.body));
     print('Search Model: $searchModel');
