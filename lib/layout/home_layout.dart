@@ -19,7 +19,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   List<Widget> views = [
     const HomeView(),
     const SearchView(),
-    BrowseView(),
+    const BrowseView(),
     WatchListView(),
   ];
 
