@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/pages/browse/widgets/category_item.dart';
+import 'package:movies/pages/browse/widgets/genre_view.dart';
 import 'package:provider/provider.dart';
 
 import 'browse_view_model.dart';
@@ -22,6 +23,8 @@ class _BrowseViewState extends State<BrowseView> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
     return ChangeNotifierProvider(
       create: (context) => vm,
       builder: (context, child) {
@@ -30,14 +33,9 @@ class _BrowseViewState extends State<BrowseView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
+              Text(
                 'Browse Category',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Inter',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: theme.textTheme.titleMedium,
               ),
               const SizedBox(
                 height: 8,
@@ -46,11 +44,11 @@ class _BrowseViewState extends State<BrowseView> {
                 builder: (context, vm, child) {
                   return Expanded(
                     child: (vm.genres.isEmpty)
-                        ? const Column(
+                        ? Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CircularProgressIndicator(
-                                color: Color(0xffB5B4B4),
+                                color: theme.colorScheme.primary,
                               ),
                             ],
                           )
@@ -58,18 +56,23 @@ class _BrowseViewState extends State<BrowseView> {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              childAspectRatio: 7 / 4,
-                              mainAxisSpacing: 35,
-                              crossAxisSpacing: 35,
-                            ),
-                            itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {
-                                  vm.getMovies(vm.genres[index].id);
+                        childAspectRatio: 7 / 4,
+                        mainAxisSpacing: 35,
+                        crossAxisSpacing: 35,
+                      ),
+                      itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            vm.getMovies(vm.genres[index].id);
+                                  Navigator.pushNamed(
+                                    context,
+                                    GenreView.routeName,
+                                    arguments: vm.genres[index].name,
+                                  );
                                 },
-                                child: CategoryItem(model: vm.genres[index])),
-                            itemCount: vm.genres.length,
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                          ),
+                          child: CategoryItem(model: vm.genres[index])),
+                      itemCount: vm.genres.length,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                    ),
                   );
                 },
               ),
