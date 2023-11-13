@@ -7,5 +7,7 @@ class Constants {
 
   static const String discoverMoviesEndPoint = '/3/discover/movie';
 
+  static const String searchEndPoint = '/3/search/movie';
+
   static const String imageBaseURL = 'https://image.tmdb.org/t/p/w500';
 }
