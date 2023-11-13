@@ -60,4 +60,19 @@ class ApiManager {
     print('Search Model: $searchModel');
     return searchModel;
   }
+
+  static Future<SearchModel> search({required String query}) async {
+    Uri uri = Uri.https(
+      Constants.baseURL,
+      Constants.searchEndPoint,
+      {
+        'api_key': Constants.apiKey,
+        'query': query,
+      },
+    );
+    var response = await http.get(uri);
+    print(response.body);
+    SearchModel searchModel = SearchModel.fromJson(jsonDecode(response.body));
+    return searchModel;
+  }
 }
