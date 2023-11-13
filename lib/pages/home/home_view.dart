@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/pages/home/home_detials/home_details_view.dart';
 import 'package:movies/pages/home/widgets/popular_movie_item.dart';
 
 import '../../core/network_layer/api_manager.dart';
@@ -33,7 +34,13 @@ class HomeView extends StatelessWidget {
             );
           },
         ),
-
+        GestureDetector(
+            onTap: (){
+             Navigator.pushNamed(context, HomeDetailsView.routeName);
+            },
+            child: Text("Movie details" , style: TextStyle(fontSize: 30 ,
+                color: Colors.white),),
+          ),
       ],
     );
   }
