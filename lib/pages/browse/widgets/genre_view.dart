@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies/core/constants.dart';
-import 'package:movies/models/movie_model.dart';
 import 'package:movies/pages/browse/browse_view_model.dart';
 import 'package:movies/pages/browse/widgets/movie_item.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +15,7 @@ class GenreView extends StatefulWidget {
 class _GenreViewState extends State<GenreView> {
   var vm = BrowseViewModel();
 
-  List<MovieModel> movies = [
+  /*List<MovieModel> movies = [
     MovieModel(
       adult: false,
       backdropPath: '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
@@ -82,12 +80,13 @@ class _GenreViewState extends State<GenreView> {
       voteAverage: 7.7,
       voteCount: 2226,
     ),
-  ];
+  ];*/
 
   @override
   void initState() {
     super.initState();
-    vm.movies.addAll(movies);
+    //vm.movies.addAll(movies);
+    vm.getMovies(16);
   }
 
   @override
