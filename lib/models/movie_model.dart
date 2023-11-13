@@ -1,23 +1,25 @@
 class MovieModel {
+  String? firestoreId;
   bool? adult;
   String? backdropPath;
-  List<int> genreIds = [];
+  List<int>? genreIds = [];
   int? id;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  num? popularity;
   String? posterPath;
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
+  num? voteAverage;
   int? voteCount;
 
   MovieModel({
+    this.firestoreId,
     this.adult,
     this.backdropPath,
-    required this.genreIds,
+    this.genreIds,
     this.id,
     this.originalLanguage,
     this.originalTitle,
@@ -33,6 +35,45 @@ class MovieModel {
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
+      adult: json['adult'],
+      backdropPath: json['backdrop_path'],
+      genreIds: json['genre_ids'].cast<int>(),
+      id: json['id'],
+      originalLanguage: json['original_language'],
+      originalTitle: json['original_title'],
+      overview: json['overview'],
+      popularity: json['popularity'],
+      posterPath: json['poster_path'],
+      releaseDate: json['release_date'],
+      title: json['title'],
+      video: json['video'],
+      voteAverage: json['vote_average'],
+      voteCount: json['vote_count'],
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      'adult': adult,
+      'backdrop_path': backdropPath,
+      'genre_ids': genreIds,
+      'id': id,
+      'original_language': originalLanguage,
+      'original_title': originalTitle,
+      'overview': overview,
+      'popularity': popularity,
+      'poster_path': posterPath,
+      'release_date': releaseDate,
+      'title': title,
+      'video': video,
+      'vote_average': voteAverage,
+      'vote_count': voteCount,
+    };
+  }
+
+  factory MovieModel.fromFirestore(Map<String, dynamic> json) {
+    return MovieModel(
+      firestoreId: json['firestoreId'],
       adult: json['adult'],
       backdropPath: json['backdrop_path'],
       genreIds: json['genre_ids'].cast<int>(),

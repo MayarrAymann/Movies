@@ -1,14 +1,14 @@
 import 'genre_model.dart';
 
-class CategoryModel {
+class MoviesListModel {
   final List<GenreModel> genres;
 
-  CategoryModel({
+  MoviesListModel({
     required this.genres,
   });
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) {
-    return CategoryModel(
+  factory MoviesListModel.fromJson(Map<String, dynamic> json) {
+    return MoviesListModel(
         genres: (json['genres'] as List)
             .map((e) => GenreModel.fromJson(e))
             .toList());

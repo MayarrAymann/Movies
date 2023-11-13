@@ -48,6 +48,7 @@ class WatchlistItem extends StatelessWidget {
                   children: [
                     Text(
                       watchlistModel.title,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontFamily: 'Inter',
                         color: Colors.white,

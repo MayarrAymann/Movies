@@ -13,30 +13,100 @@ class GenreView extends StatefulWidget {
 }
 
 class _GenreViewState extends State<GenreView> {
+  var vm = BrowseViewModel();
+
+  /*List<MovieModel> movies = [
+    MovieModel(
+      adult: false,
+      backdropPath: '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
+      genreIds: [28, 53],
+      id: 575264,
+      originalLanguage: 'en',
+      originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
+      overview: 'Seventh film in the Mission: Impossible series.',
+      popularity: 2820.303,
+      posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
+      releaseDate: '2023-07-08',
+      title: 'Mission: Impossible - Dead Reckoning Part One',
+      video: false,
+      voteAverage: 7.7,
+      voteCount: 2226,
+    ),
+    MovieModel(
+      adult: false,
+      backdropPath: '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
+      genreIds: [28, 53],
+      id: 575264,
+      originalLanguage: 'en',
+      originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
+      overview: 'Seventh film in the Mission: Impossible series.',
+      popularity: 2820.303,
+      posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
+      releaseDate: '2023-07-08',
+      title: 'Mission: Impossible - Dead Reckoning Part One',
+      video: false,
+      voteAverage: 7.7,
+      voteCount: 2226,
+    ),
+    MovieModel(
+      adult: false,
+      backdropPath: '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
+      genreIds: [28, 53],
+      id: 575264,
+      originalLanguage: 'en',
+      originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
+      overview: 'Seventh film in the Mission: Impossible series.',
+      popularity: 2820.303,
+      posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
+      releaseDate: '2023-07-08',
+      title: 'Mission: Impossible - Dead Reckoning Part One',
+      video: false,
+      voteAverage: 7.7,
+      voteCount: 2226,
+    ),
+    MovieModel(
+      adult: false,
+      backdropPath: '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
+      genreIds: [28, 53],
+      id: 575264,
+      originalLanguage: 'en',
+      originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
+      overview: 'Seventh film in the Mission: Impossible series.',
+      popularity: 2820.303,
+      posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
+      releaseDate: '2023-07-08',
+      title: 'Mission: Impossible - Dead Reckoning Part One',
+      video: false,
+      voteAverage: 7.7,
+      voteCount: 2226,
+    ),
+  ];*/
+
+  @override
+  void initState() {
+    super.initState();
+    //vm.movies.addAll(movies);
+    vm.getMovies(16);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)!.settings.arguments as BrowseViewModel;
+    var args = ModalRoute.of(context)?.settings.arguments as String;
+
     return ChangeNotifierProvider(
-      create: (context) => args,
+      create: (context) => vm,
       builder: (context, child) => Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(args),
+        ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 70, left: 15, right: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Genre',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 22,
-                ),
-              ),
               Consumer<BrowseViewModel>(
-                builder: (context, args, child) => Expanded(
-                  child: (args.movies.isEmpty)
+                builder: (context, vm, child) => Expanded(
+                  child: (vm.movies.isEmpty)
                       ? const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -47,15 +117,15 @@ class _GenreViewState extends State<GenreView> {
                         )
                       : ListView.builder(
                           itemBuilder: (context, index) =>
-                              MovieItem(model: args.movies[index]),
-                          itemCount: args.movies.length,
+                              MovieItem(model: vm.movies[index]),
+                          itemCount: vm.movies.length,
                         ),
-                ),
+                        ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
     );
   }
 }
