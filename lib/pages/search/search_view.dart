@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/network_layer/api_manager.dart';
-import 'package:movies/pages/search/widgets/movies_search.dart';
+import 'package:movies/pages/search/widgets/custom_search_widget.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -25,38 +25,7 @@ class _SearchViewState extends State<SearchView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: IconButton(
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: MoviesSearch(),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.search,
-                    size: 20,
-                    color: Colors.grey.shade400,
-                  ),
-                ),
-                hintText: "Search",
-                hintStyle: const TextStyle(
-                  color: Color(0xff514F4F),
-                  fontSize: 20,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(
-                    color: Color(0xff514F4F),
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(color: Color(0xff514F4F)),
-                ),
-              ),
-            ),
+            const CustomSearchWidget(),
             const SizedBox(
               height: 200,
             ),
