@@ -7,18 +7,10 @@ import '../../models/movie_model.dart';
 class BrowseViewModel extends ChangeNotifier {
   List<GenreModel> _genres = [];
   List<MovieModel> _movies = [];
-  bool _isGenreSelected = false;
 
   List<GenreModel> get genres => _genres;
-
   List<MovieModel> get movies => _movies;
 
-  bool get isGenreSelected => _isGenreSelected;
-
-  selectedGenre(bool value) {
-    _isGenreSelected = value;
-    notifyListeners();
-  }
 
   getGenres() async {
     try {
