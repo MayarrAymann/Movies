@@ -3,13 +3,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:movies/core/constants.dart';
+import 'package:movies/models/movies_list_model.dart';
 
-import '../../models/category_model.dart';
-import '../../models/popular_model.dart';
-import '../../models/search_model.dart';
+import '../../models/response_model.dart';
 
 class ApiManager {
-  static Future<CategoryModel> fetchCategories() async {
+  static Future<MoviesListModel> fetchCategories() async {
     Uri uri = Uri.https(
       Constants.baseURL,
       Constants.categoriesEndPoint,
@@ -20,25 +19,24 @@ class ApiManager {
 
     var response = await http.get(uri);
 
-    print(jsonDecode(response.body));
+    MoviesListModel categories =
+        MoviesListModel.fromJson(jsonDecode(response.body));
 
-    CategoryModel categoryModel =
-        CategoryModel.fromJson(jsonDecode(response.body));
-
-    return categoryModel;
+    return categories;
   }
-  
-  static Future<Results> fetchPopular() async {
+
+  static Future<ResponseModel> fetchPopular() async {
     Uri url = Uri.https(Constants.baseURL, "/3/movie/popular", {
       "api_key": Constants.apiKey,
     });
     var response = await http.get(url);
-    var jsonData = jsonDecode(response.body);
-    Results popularModel = Results.fromJson(jsonData);
-    return popularModel;
+
+    ResponseModel popular = ResponseModel.fromJson(jsonDecode(response.body));
+
+    return popular;
   }
-  
-  static Future<SearchModel> discoverMoviesByGenre(
+
+  static Future<ResponseModel> discoverMoviesByGenre(
       {required int genreId}) async {
     Uri uri = Uri.https(
       Constants.baseURL,
@@ -52,16 +50,13 @@ class ApiManager {
 
     var response = await http.get(uri);
 
-    print('Discover Movies: *-*-*-**-*-*-*-*-*-*-*-*-*-*-*\n${response.body}');
+    ResponseModel moviesByGenre =
+        ResponseModel.fromJson(jsonDecode(response.body));
 
-    print('end of response');
-
-    SearchModel searchModel = SearchModel.fromJson(jsonDecode(response.body));
-    print('Search Model: $searchModel');
-    return searchModel;
+    return moviesByGenre;
   }
 
-  static Future<SearchModel> search({required String query}) async {
+  static Future<ResponseModel> search({required String query}) async {
     Uri uri = Uri.https(
       Constants.baseURL,
       Constants.searchEndPoint,
@@ -71,8 +66,9 @@ class ApiManager {
       },
     );
     var response = await http.get(uri);
-    print(response.body);
-    SearchModel searchModel = SearchModel.fromJson(jsonDecode(response.body));
-    return searchModel;
+
+    ResponseModel movies = ResponseModel.fromJson(jsonDecode(response.body));
+
+    return movies;
   }
 }
