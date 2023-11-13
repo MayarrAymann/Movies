@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:movies/core/network_layer/api_manager.dart';
 import 'package:movies/pages/search/widgets/movies_search.dart';
 
-class SearchView extends StatelessWidget {
+class SearchView extends StatefulWidget {
   const SearchView({super.key});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+  @override
+  void initState() {
+    super.initState();
+    ApiManager.search(query: 'Mission');
+  }
 
   @override
   Widget build(BuildContext context) {

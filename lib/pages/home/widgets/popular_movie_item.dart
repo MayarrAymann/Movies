@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:movies/core/constants.dart';
-import 'package:movies/models/popular_model.dart';
+import 'package:movies/models/response_model.dart';
 
 class PopularMovieItem extends StatelessWidget{
-  final Results results;
+  final ResponseModel results;
+
   const PopularMovieItem({super.key, required this.results});
 
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
