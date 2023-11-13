@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/core/constants.dart';
 import 'package:movies/models/movie_model.dart';
 
 class MovieItem extends StatelessWidget {
@@ -24,7 +25,8 @@ class MovieItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   image: DecorationImage(
-                    image: NetworkImage(model.posterPath!),
+                    image: NetworkImage(
+                        '${Constants.imageBaseURL}${model.posterPath}'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -38,6 +40,8 @@ class MovieItem extends StatelessWidget {
                   children: [
                     Text(
                       model.title!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontFamily: 'Inter',
                         color: Colors.white,

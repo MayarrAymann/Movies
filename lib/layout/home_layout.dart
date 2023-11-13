@@ -16,6 +16,7 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeLayoutState extends State<HomeLayout> {
   int selectedViewIndex = 0;
+  
   List<Widget> views = const [
     HomeView(),
     SearchView(),
