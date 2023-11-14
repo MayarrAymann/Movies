@@ -67,14 +67,6 @@ class _HomeViewState extends State<HomeView> {
             );
           },
         ),
-
-        GestureDetector(
-            onTap: (){
-             Navigator.pushNamed(context, HomeDetailsView.routeName);
-            },
-            child: Text("Movie details" , style: TextStyle(fontSize: 30 ,
-                color: Colors.white),),
-          ),
       ],
     );
   }

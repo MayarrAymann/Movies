@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/constants.dart';
 import 'package:movies/models/movie_model.dart';
 
+import '../home_detials/home_details_view.dart';
+
 class PopularMovieItem extends StatelessWidget {
   final MovieModel model;
 
@@ -25,7 +27,13 @@ class PopularMovieItem extends StatelessWidget {
                       "${Constants.imageBaseURL}${model.backdropPath}",
                       fit: BoxFit.cover,
                     ),
-                    Image.asset("assets/images/play_button.png"),
+                    GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamed(context,HomeDetailsView.routeName ,
+                          arguments: model
+                          );
+                        },
+                        child: Image.asset("assets/images/play_button.png")),
                   ],
                 ),
                 Positioned(
