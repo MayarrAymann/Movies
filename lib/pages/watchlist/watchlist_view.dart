@@ -5,6 +5,8 @@ import 'package:movies/models/movie_model.dart';
 import 'package:movies/models/watchlist_model.dart';
 import 'package:movies/pages/watchlist/widgets/watchlist_item.dart';
 
+import '../../core/constants.dart';
+
 class WatchListView extends StatefulWidget {
   const WatchListView({super.key});
 

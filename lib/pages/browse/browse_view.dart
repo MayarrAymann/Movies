@@ -56,23 +56,23 @@ class _BrowseViewState extends State<BrowseView> {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                        childAspectRatio: 7 / 4,
-                        mainAxisSpacing: 35,
-                        crossAxisSpacing: 35,
-                      ),
-                      itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            vm.getMovies(vm.genres[index].id);
+                              childAspectRatio: 7 / 4,
+                              mainAxisSpacing: 35,
+                              crossAxisSpacing: 35,
+                            ),
+                            itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  vm.getMovies(vm.genres[index].id);
                                   Navigator.pushNamed(
                                     context,
                                     GenreView.routeName,
                                     arguments: vm.genres[index].name,
                                   );
                                 },
-                          child: CategoryItem(model: vm.genres[index])),
-                      itemCount: vm.genres.length,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                    ),
+                                child: CategoryItem(model: vm.genres[index])),
+                            itemCount: vm.genres.length,
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                          ),
                   );
                 },
               ),
