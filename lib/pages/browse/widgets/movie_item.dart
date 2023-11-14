@@ -24,7 +24,6 @@ class MovieItem extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                flex: 1,
                 child: Container(
                   height: 90,
                   decoration: BoxDecoration(
@@ -37,15 +36,16 @@ class MovieItem extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
               Expanded(
                 flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         model.title!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -56,26 +56,26 @@ class MovieItem extends StatelessWidget {
                           fontSize: 15,
                         ),
                       ),
-                    ),
-                    Text(
-                      model.releaseDate!,
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        color: Colors.white60,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
+                      Text(
+                        model.releaseDate!,
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          color: Colors.white60,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                    Text(
-                      model.originalLanguage!,
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        color: Colors.white60,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
+                      Text(
+                        model.originalLanguage!,
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          color: Colors.white60,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
