@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies/pages/search/search_view_model.dart';
 
 import 'movies_search.dart';
 
 class CustomSearchWidget extends StatelessWidget {
-  const CustomSearchWidget({super.key});
+  final SearchViewModel vm;
+
+  const CustomSearchWidget({super.key, required this.vm});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,8 @@ class CustomSearchWidget extends StatelessWidget {
       onTap: () {
         showSearch(
           context: context,
-          delegate: MoviesSearch(),
+          delegate: MoviesSearch(vm: vm),
+          query: vm.searchQuery,
         );
       },
       child: Container(
@@ -25,18 +29,18 @@ class CustomSearchWidget extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.search,
               color: Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             Text(
-              'Search',
-              style: TextStyle(
+              (vm.searchQuery.isEmpty) ? 'Search' : vm.searchQuery,
+              style: const TextStyle(
                 color: Colors.white54,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
