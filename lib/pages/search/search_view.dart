@@ -1,43 +1,77 @@
 import 'package:flutter/material.dart';
-import 'package:movies/core/network_layer/api_manager.dart';
+import 'package:movies/pages/search/search_view_model.dart';
 import 'package:movies/pages/search/widgets/custom_search_widget.dart';
+import 'package:provider/provider.dart';
+
+import '../browse/widgets/movie_item.dart';
 
 class SearchView extends StatefulWidget {
-  const SearchView({super.key});
+  SearchView({super.key});
 
   @override
   State<SearchView> createState() => _SearchViewState();
 }
 
 class _SearchViewState extends State<SearchView> {
-  @override
-  void initState() {
-    super.initState();
-    ApiManager.search(query: 'Mission');
-  }
+  SearchViewModel vm = SearchViewModel();
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const CustomSearchWidget(),
-            const SizedBox(
-              height: 200,
-            ),
-            Image.asset('assets/images/search_body.png'),
-            const Text(
-              "No Movies Found",
-              style: TextStyle(fontSize: 15, color: Color(0xff514F4F)),
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => vm,
+      builder: (context, child) {
+        return Container(
+          padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+          child: Consumer<SearchViewModel>(
+            builder: (context, vm, child) {
+              print('Movies in searchView: ${vm.movies.length}');
+              return Column(
+                children: [
+                  Expanded(
+                    child: (vm.movies.isEmpty)
+                        ? Column(
+                            children: [
+                              CustomSearchWidget(vm: vm),
+                              const SizedBox(
+                                height: 200,
+                              ),
+                              Image.asset('assets/images/search_body.png'),
+                              const SizedBox(height: 20),
+                              Text(
+                                vm.searchQuery.isEmpty
+                                    ? "Type keyword to search for"
+                                    : "No Movies Found",
+                                style: const TextStyle(
+                                    fontSize: 15, color: Color(0xff514F4F)),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              CustomSearchWidget(vm: vm),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) =>
+                                      MovieItem(model: vm.movies[index]),
+                                  itemCount: vm.movies.length,
+                                  padding: EdgeInsets.zero,
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
