@@ -61,15 +61,15 @@ class _BrowseViewState extends State<BrowseView> {
                               crossAxisSpacing: 35,
                             ),
                             itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {
-                                  vm.getMovies(vm.genres[index].id);
-                                  Navigator.pushNamed(
-                                    context,
-                                    GenreView.routeName,
-                                    arguments: vm.genres[index].name,
-                                  );
-                                },
-                                child: CategoryItem(model: vm.genres[index])),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  GenreView.routeName,
+                                  arguments: vm.genres[index],
+                                );
+                              },
+                              child: CategoryItem(model: vm.genres[index]),
+                            ),
                             itemCount: vm.genres.length,
                             padding: const EdgeInsets.symmetric(vertical: 10),
                           ),
