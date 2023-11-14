@@ -1,20 +1,20 @@
 import 'movie_model.dart';
 
-class SearchModel {
+class ResponseModel {
   int? page;
   List<MovieModel>? results;
   int? totalPages;
   int? totalResults;
 
-  SearchModel({
+  ResponseModel({
     this.page,
     this.results,
     this.totalPages,
     this.totalResults,
   });
 
-  factory SearchModel.fromJson(Map<String, dynamic> json) {
-    return SearchModel(
+  factory ResponseModel.fromJson(Map<String, dynamic> json) {
+    return ResponseModel(
       page: json['page'],
       results:
           (json['results'] as List).map((e) => MovieModel.fromJson(e)).toList(),

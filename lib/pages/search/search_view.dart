@@ -1,62 +1,77 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/search/widgets/movies_search.dart';
+import 'package:movies/pages/search/search_view_model.dart';
+import 'package:movies/pages/search/widgets/custom_search_widget.dart';
+import 'package:provider/provider.dart';
 
-class SearchView extends StatelessWidget {
-  const SearchView({super.key});
+import '../browse/widgets/movie_item.dart';
+
+class SearchView extends StatefulWidget {
+  SearchView({super.key});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+  SearchViewModel vm = SearchViewModel();
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: IconButton(
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: MoviesSearch(),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.search,
-                    size: 20,
-                    color: Colors.grey.shade400,
+    return ChangeNotifierProvider(
+      create: (context) => vm,
+      builder: (context, child) {
+        return Container(
+          padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+          child: Consumer<SearchViewModel>(
+            builder: (context, vm, child) {
+              print('Movies in searchView: ${vm.movies.length}');
+              return Column(
+                children: [
+                  Expanded(
+                    child: (vm.movies.isEmpty)
+                        ? Column(
+                            children: [
+                              CustomSearchWidget(vm: vm),
+                              const SizedBox(
+                                height: 200,
+                              ),
+                              Image.asset('assets/images/search_body.png'),
+                              const SizedBox(height: 20),
+                              Text(
+                                vm.searchQuery.isEmpty
+                                    ? "Type keyword to search for"
+                                    : "No Movies Found",
+                                style: const TextStyle(
+                                    fontSize: 15, color: Color(0xff514F4F)),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              CustomSearchWidget(vm: vm),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) =>
+                                      MovieItem(model: vm.movies[index]),
+                                  itemCount: vm.movies.length,
+                                  padding: EdgeInsets.zero,
+                                ),
+                              ),
+                            ],
+                          ),
                   ),
-                ),
-                hintText: "Search",
-                hintStyle: const TextStyle(
-                  color: Color(0xff514F4F),
-                  fontSize: 20,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(
-                    color: Color(0xff514F4F),
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(color: Color(0xff514F4F)),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 200,
-            ),
-            Image.asset('assets/images/search_body.png'),
-            const Text(
-              "No Movies Found",
-              style: TextStyle(fontSize: 15, color: Color(0xff514F4F)),
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
-      ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
