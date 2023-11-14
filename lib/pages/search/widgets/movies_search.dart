@@ -57,38 +57,19 @@ class MoviesSearch extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
-    return ThemeData(
+    return theme.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: Color(0xff514F4F).withOpacity(0.5),
-        elevation: 0,
+        backgroundColor: Colors.grey[900],
+        iconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
-        hintStyle: TextStyle(
-          color: Colors.white,
-        ),
+        hintStyle: theme.textTheme.titleMedium!.copyWith(color: Colors.white),
         border: InputBorder.none,
       ),
     );
   }
+
+  @override
+  // TODO: implement searchFieldStyle
+  TextStyle? get searchFieldStyle => const TextStyle(color: Colors.white);
 }
-/*
-theme.copyWith(
-      appBarTheme: AppBarTheme(
-        systemOverlayStyle: colorScheme.brightness == Brightness.dark
-            ? SystemUiOverlayStyle.light
-            : SystemUiOverlayStyle.dark,
-        backgroundColor: colorScheme.brightness == Brightness.dark ? Colors.grey[900] : Colors.white,
-        iconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
-        titleTextStyle: theme.textTheme.titleLarge,
-        toolbarTextStyle: theme.textTheme.bodyMedium,
-      ),
-      inputDecorationTheme: searchFieldDecorationTheme ??
-          InputDecorationTheme(
-            hintStyle: searchFieldStyle ?? theme.inputDecorationTheme.hintStyle,
-            border: InputBorder.none,
-          ),
-    );
- */
