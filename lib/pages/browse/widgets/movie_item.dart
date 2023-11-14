@@ -12,9 +12,6 @@ class MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    var width = mediaQuery.size.width;
-    var height = mediaQuery.size.height;
 
     return Column(
       children: [
@@ -33,6 +30,15 @@ class MovieItem extends StatelessWidget {
                           '${Constants.imageBaseURL}${model.posterPath}'),
                       fit: BoxFit.cover,
                     ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Image.asset('assets/images/bookmarked.png'),
+                      ),
+                    ],
                   ),
                 ),
               ),
