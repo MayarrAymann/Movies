@@ -15,9 +15,13 @@ class FirestoreUtils {
 
   static Future<void> addDataToFirestore(MovieModel movie) {
     var collectionRef = getCollection();
-    var docRef = collectionRef.doc();
-    movie.firestoreId = docRef.id;
-    return docRef.set(movie);
+    return collectionRef.doc(movie.id.toString()).set(movie);
+  }
+
+  static Future<void> deleteDataFromFirestore(MovieModel movie) {
+    var collectionRef = getCollection();
+    var docRef = collectionRef.doc(movie.id.toString());
+    return docRef.delete();
   }
 
   static Stream<QuerySnapshot<MovieModel>> getRealTimeDataFromFirestore() {
