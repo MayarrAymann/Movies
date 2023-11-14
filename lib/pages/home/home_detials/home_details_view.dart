@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies/pages/home/home_detials/more_of_movies.dart';
-
 import '../../../core/constants.dart';
 import '../../../models/movie_model.dart';
 
@@ -20,7 +19,7 @@ class HomeDetailsView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "Dora and the lost city of gold",
+          args.originalTitle ?? "",
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
       ),
@@ -47,15 +46,22 @@ class HomeDetailsView extends StatelessWidget {
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Text(
-                args.releaseDate ?? "",
-                style: TextStyle(fontSize: 15, color: Colors.grey.shade400),
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0 , right: 10.0),
+                  child: Text(
+                    args.releaseDate ?? "",
+                    style: TextStyle(fontSize: 15, color: Colors.grey.shade400),
+                  ),
+                ),
+                Text("7 h 2m" ,style:
+                TextStyle(fontSize: 15, color: Colors.grey.shade400) )
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top:8.0, left: 8.0 , right:8.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -81,7 +87,7 @@ class HomeDetailsView extends StatelessWidget {
                         ),
                         Container(
                           padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(top: 20),
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.grey.shade400,
@@ -89,7 +95,7 @@ class HomeDetailsView extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: Text("Action",
+                          child: Text("${args.genreIds}",
                               style: TextStyle(fontSize: 20, color: Colors.grey)),
                         ),
                         Padding(
@@ -123,7 +129,7 @@ class HomeDetailsView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text("More Like This ",
                   style: TextStyle(fontSize: 20, color: Colors.white)),
             ),

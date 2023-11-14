@@ -35,6 +35,16 @@ class ApiManager {
 
     return popular;
   }
+  static Future<ResponseModel> fetchDetails() async {
+    Uri url = Uri.https(Constants.baseURL, "3/movie/{movie_id} ", {
+      "api_key": Constants.apiKey,
+    });
+    var response = await http.get(url);
+
+    ResponseModel details = ResponseModel.fromJson(jsonDecode(response.body));
+
+    return details;
+  }
 
   static Future<ResponseModel> discoverMoviesByGenre(
       {required int genreId}) async {
