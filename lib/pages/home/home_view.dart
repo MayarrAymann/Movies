@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:movies/pages/home/home_view_model.dart';
 import 'package:movies/pages/home/widgets/popular_movie_item.dart';
 import 'package:provider/provider.dart';
-
+import 'package:movies/pages/home/home_detials/home_details_view.dart';
+import 'package:movies/models/response_model.dart';
+import '../../core/network_layer/api_manager.dart';
 class HomeView extends StatefulWidget {
+
   const HomeView({super.key});
 
   @override
@@ -64,6 +67,14 @@ class _HomeViewState extends State<HomeView> {
             );
           },
         ),
+
+        GestureDetector(
+            onTap: (){
+             Navigator.pushNamed(context, HomeDetailsView.routeName);
+            },
+            child: Text("Movie details" , style: TextStyle(fontSize: 30 ,
+                color: Colors.white),),
+          ),
       ],
     );
   }
