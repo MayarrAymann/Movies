@@ -1,8 +1,7 @@
 class MovieModel {
-  String? firestoreId;
   bool? adult;
   String? backdropPath;
-  List<int>? genreIds = [];
+  List<dynamic>? genreIds = [];
   int? id;
   String? originalLanguage;
   String? originalTitle;
@@ -16,7 +15,6 @@ class MovieModel {
   int? voteCount;
 
   MovieModel({
-    this.firestoreId,
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -73,10 +71,9 @@ class MovieModel {
 
   factory MovieModel.fromFirestore(Map<String, dynamic> json) {
     return MovieModel(
-      firestoreId: json['firestoreId'],
       adult: json['adult'],
       backdropPath: json['backdrop_path'],
-      genreIds: json['genre_ids'].cast<int>(),
+      genreIds: json['genre_ids'],
       id: json['id'],
       originalLanguage: json['original_language'],
       originalTitle: json['original_title'],
