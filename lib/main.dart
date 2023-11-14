@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashView.routeName: (context) => const SplashView(),
         HomeLayout.routeName: (context) => const HomeLayout(),
-        GenreView.routeName: (context) => const GenreView(),
+        GenreView.routeName: (context) => GenreView(),
       },
     );
   }
