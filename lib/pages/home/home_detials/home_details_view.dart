@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/pages/home/home_detials/more_of_movies.dart';
 
@@ -62,11 +61,11 @@ class HomeDetailsView extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.asset(
-                        "${Constants.imageBaseURL}${args.posterPath}",
-                        width: 140,
-                        height: 250,
-                      ),
+                      Image.network(
+                      "${Constants.imageBaseURL}${args.posterPath}",
+                      width: 140,
+                      height: 250,
+                    ),
                       Image.asset("assets/images/bookmark.png"),
                     ],
                   ),
