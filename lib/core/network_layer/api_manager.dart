@@ -36,8 +36,7 @@ class ApiManager {
     return popular;
   }
 
-  static Future<ResponseModel> discoverMoviesByGenre(
-      {required int genreId}) async {
+  static Future<ResponseModel> discoverMoviesByGenre({required int genreId}) async {
     Uri uri = Uri.https(
       Constants.baseURL,
       Constants.discoverMoviesEndPoint,
@@ -71,4 +70,32 @@ class ApiManager {
 
     return movies;
   }
+
+  static Future<ResponseModel> fetchNewReleases() async{
+    Uri url = Uri.http(
+        Constants.baseURL,
+        "/3/movie/upcoming",
+      {
+        "api_key": Constants.apiKey,
+      }
+    );
+    var response = await http.get(url);
+    ResponseModel model = ResponseModel.fromJson(jsonDecode(response.body));
+    return model;
+  }
+
+  static Future<ResponseModel> fetchRecommend() async{
+    Uri url = Uri.http(
+        Constants.baseURL,
+        "/3/movie/top_rated",
+        {
+          "api_key": Constants.apiKey,
+        }
+    );
+    var response = await http.get(url);
+    ResponseModel model = ResponseModel.fromJson(jsonDecode(response.body));
+    return model;
+  }
+
+
 }
