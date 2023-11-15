@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:movies/pages/home/home_detials/more_of_movies.dart';
 import '../../../core/constants.dart';
 import '../../../models/movie_model.dart';
+import '../home_view_model.dart';
 
 class HomeDetailsView extends StatelessWidget {
   static String routeName = "home details";
-
+  var vm = HomeViewModel();
+  late final MovieModel detailsModel;
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as MovieModel;
-    var mediaquary = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -71,6 +72,7 @@ class HomeDetailsView extends StatelessWidget {
                       "${Constants.imageBaseURL}${args.posterPath}",
                       width: 140,
                       height: 250,
+                        fit: BoxFit.cover,
                     ),
                       Image.asset("assets/images/bookmark.png"),
                     ],
@@ -82,9 +84,6 @@ class HomeDetailsView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: 20,
-                        ),
                         Container(
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.only(top: 20),
@@ -95,7 +94,7 @@ class HomeDetailsView extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: Text("${args.genreIds}",
+                          child: Text("Action",
                               style: TextStyle(fontSize: 20, color: Colors.grey)),
                         ),
                         Padding(
@@ -128,15 +127,21 @@ class HomeDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text("More Like This ",
-                  style: TextStyle(fontSize: 20, color: Colors.white)),
+            Container(
+              color: Color(0XFF282A28),
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0 , vertical: 5),
+                child: Text("More Like This ",
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
+              ),
             ),
             Expanded(
               child: ListView.builder(
-                itemBuilder: (context, index) => More_Of_Movies(),
-                itemCount: 5,
+                itemBuilder: (context, index) => More_Of_Movies(
+                  // detailsModel: vm.movies[index],
+                ),
+                itemCount: vm.movies.length,
                 scrollDirection: Axis.horizontal,
               ),
             ),

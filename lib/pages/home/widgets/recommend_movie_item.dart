@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants.dart';
 import '../../../models/movie_model.dart';
+import '../home_detials/home_details_view.dart';
 
 class RecommendMovieItem extends StatelessWidget {
   final MovieModel model;
@@ -21,15 +22,22 @@ class RecommendMovieItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: Stack(
-                  children: [
-                    Image.network(
-                      "${Constants.imageBaseURL}${model.posterPath}",
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                    Image.asset("assets/images/add_to_bookmark.png"),
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context,
+                        HomeDetailsView.routeName,
+                        arguments: model);
+                  },
+                  child: Stack(
+                    children: [
+                      Image.network(
+                        "${Constants.imageBaseURL}${model.posterPath}",
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                      Image.asset("assets/images/add_to_bookmark.png"),
+                    ],
+                  ),
                 ),
               ),
                Padding(

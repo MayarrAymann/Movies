@@ -28,11 +28,7 @@ class PopularMovieItem extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                     GestureDetector(
-                        onTap: (){
-                          Navigator.pushNamed(context,HomeDetailsView.routeName ,
-                          arguments: model
-                          );
-                        },
+                        onTap: (){},
                         child: Image.asset("assets/images/play_button.png")),
                   ],
                 ),
