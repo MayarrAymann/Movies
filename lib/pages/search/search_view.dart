@@ -24,6 +24,7 @@ class _SearchViewState extends State<SearchView> {
       builder: (context, child) {
         return Container(
           padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+          width: MediaQuery.sizeOf(context).width,
           child: Consumer<SearchViewModel>(
             builder: (context, vm, child) {
               print('Movies in searchView: ${vm.movies.length}');
