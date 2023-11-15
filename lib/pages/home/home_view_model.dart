@@ -4,14 +4,19 @@ import '../../models/movie_model.dart';
 
 class HomeViewModel extends ChangeNotifier{
 
-  List<MovieModel> _movies = [];
-  List<MovieModel> get movies => _movies;
+  List<MovieModel> _popularMovies = [];
+  List<MovieModel> _newReleaseMovies = [];
+  List<MovieModel> _recommendMovies = [];
+
+  List<MovieModel> get popularMovies => _popularMovies;
+  List<MovieModel> get newReleaseMovies => _newReleaseMovies;
+  List<MovieModel> get recommendMovies => _recommendMovies;
 
 
   getPopularMovieItem() async {
     try {
       var response = await ApiManager.fetchPopular();
-      _movies = response.results!;
+      _popularMovies = response.results!;
       notifyListeners();
     } catch (e) {
       print(e.toString());
@@ -20,7 +25,7 @@ class HomeViewModel extends ChangeNotifier{
   getNewReleasesMovieItem() async {
     try {
       var response = await ApiManager.fetchNewReleases();
-      _movies = response.results!;
+      _newReleaseMovies = response.results!;
       notifyListeners();
     } catch (e) {
       print(e.toString());
@@ -29,7 +34,7 @@ class HomeViewModel extends ChangeNotifier{
   getRecommendMovieItem() async {
     try {
       var response = await ApiManager.fetchRecommend();
-      _movies = response.results!;
+      _recommendMovies = response.results!;
       notifyListeners();
     } catch (e) {
       print(e.toString());
