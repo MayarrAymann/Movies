@@ -4,9 +4,8 @@ import 'package:movies/core/constants.dart';
 import '../../../models/movie_model.dart';
 
 class More_Of_Movies extends StatelessWidget{
-  final MovieModel model;
-
-  const More_Of_Movies({super.key, required this.model});
+  final MovieModel detailsModel;
+  const More_Of_Movies({super.key, required this.detailsModel});
 
   @override
   Widget build(BuildContext context) {
