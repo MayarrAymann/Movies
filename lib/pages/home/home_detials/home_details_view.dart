@@ -139,7 +139,7 @@ class HomeDetailsView extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemBuilder: (context, index) => More_Of_Movies(
-                  // detailsModel: vm.movies[index],
+                  model: vm.movies[index],
                 ),
                 itemCount: vm.movies.length,
                 scrollDirection: Axis.horizontal,
