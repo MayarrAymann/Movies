@@ -6,6 +6,9 @@ import 'package:movies/pages/home/widgets/popular_movie_item.dart';
 import 'package:movies/pages/home/widgets/recommend_movie_item.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/movie_model.dart';
+import 'home_detials/home_details_view.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -15,6 +18,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   var vm = HomeViewModel();
+  late final MovieModel model;
 
   @override
   void initState() {
@@ -52,7 +56,11 @@ class _HomeViewState extends State<HomeView> {
                         )
                       : CarouselSlider.builder(
                           itemBuilder: (context, index, r) => GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, HomeDetailsView.routeName,
+                                  arguments: model);
+                            },
                             child: PopularMovieItem(
                               model: vm.movies[index],
                             ),
@@ -116,8 +124,12 @@ class _HomeViewState extends State<HomeView> {
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) =>
                                           GestureDetector(
-                                        onTap: () {},
-                                          child: NewReleasesMovieItem(
+                                        onTap: () {
+                                          Navigator.pushNamed(context,
+                                              HomeDetailsView.routeName,
+                                              arguments: model);
+                                        },
+                                        child: NewReleasesMovieItem(
                                           model: vm.movies[index],
                                         ),
                                       ),
@@ -175,17 +187,16 @@ class _HomeViewState extends State<HomeView> {
                                       textAlign: TextAlign.start,
                                     ),
                                   ),
-                                  const SizedBox(height: 15,),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
                                   Expanded(
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) =>
-                                          GestureDetector(
-                                          onTap: () {},
-                                           child: RecommendMovieItem(
+                                          RecommendMovieItem(
                                           model: vm.movies[index],
                                         ),
-                                      ),
                                       itemCount: vm.movies.length,
                                     ),
                                   ),
