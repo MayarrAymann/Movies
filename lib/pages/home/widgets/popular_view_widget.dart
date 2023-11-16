@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/pages/home/home_view_model.dart';
-import 'package:movies/pages/home/widgets/popular_movie_item.dart';
 import 'package:provider/provider.dart';
 
 import '../home_detials/home_details_view.dart';
+import '../home_view_model.dart';
+import 'popular_movie_item.dart';
 
 class PopularViewWidget extends StatelessWidget {
   HomeViewModel vm;
@@ -31,9 +31,7 @@ class PopularViewWidget extends StatelessWidget {
                 : CarouselSlider.builder(
                     itemBuilder: (context, index, r) => GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          HomeDetailsView.routeName,
+                        Navigator.pushNamed(context, HomeDetailsView.routeName,
                             arguments: vm.popularMovies[index]);
                       },
                       child: PopularMovieItem(

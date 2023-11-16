@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies/models/genre_model.dart';
-import 'package:movies/pages/browse/browse_view_model.dart';
-import 'package:movies/pages/browse/widgets/movie_item.dart';
 import 'package:provider/provider.dart';
+
+import '../../../models/genre_model.dart';
+import '../../../pages/browse/browse_view_model.dart';
+import '../../../pages/browse/widgets/movie_item.dart';
 
 class GenreView extends StatelessWidget {
   static const String routeName = 'genre-view';

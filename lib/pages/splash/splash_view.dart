@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:movies/layout/home_layout.dart';
+import '../../layout/home_layout.dart';
 
 class SplashView extends StatefulWidget {
   static const String routeName = 'splash-view';

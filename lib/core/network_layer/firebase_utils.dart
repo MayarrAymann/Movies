@@ -16,7 +16,7 @@ class FirestoreUtils {
   static Future<void> addDataToFirestore(MovieModel movie) {
     var collectionRef = getCollection();
     var docRef = collectionRef.doc();
-    movie.firestoreId = docRef.id;
+    //movie.firestoreId = docRef.id;
     return docRef.set(movie);
   }
 

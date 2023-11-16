@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../search_view_model.dart';
 
 class MoviesSearch extends SearchDelegate {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/browse/browse_view.dart';
-import 'package:movies/pages/home/home_view.dart';
-import 'package:movies/pages/watchlist/watchlist_view.dart';
-
+import '../pages/home/home_view.dart';
 import '../pages/search/search_view.dart';
+import '../pages/browse/browse_view.dart';
+import '../pages/watchlist/watchlist_view.dart';
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = 'home-layout';

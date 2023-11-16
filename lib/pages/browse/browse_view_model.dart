@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants.dart';
 import '../../core/network_layer/api_manager.dart';
+import '../../models/details_model.dart';
 import '../../models/genre_model.dart';
-import '../../models/movie_model.dart';
 
 class BrowseViewModel extends ChangeNotifier {
   List<GenreModel> _genres = [];
-  List<MovieModel> _movies = [];
+  List<DetailsModel> _movies = [];
 
   List<GenreModel> get genres => _genres;
-  List<MovieModel> get movies => _movies;
 
+  List<DetailsModel> get movies => _movies;
 
   getGenres() async {
     try {
@@ -26,7 +27,10 @@ class BrowseViewModel extends ChangeNotifier {
     try {
       var response =
           await ApiManager.discoverMoviesByGenre(genreId: selectedGenreId);
-      _movies = response.results!;
+      var movies = response.results!;
+
+      _movies = await Constants.getDetails(movies);
+
       notifyListeners();
     } catch (e) {
       print(e.toString());

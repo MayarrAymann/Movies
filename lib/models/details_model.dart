@@ -1,7 +1,7 @@
 class DetailsModel {
   bool? adult;
   String? backdropPath;
-  List<Map<String, dynamic>>? genres;
+  List<dynamic>? genres;
   int? id;
   String? originalLanguage;
   String? originalTitle;

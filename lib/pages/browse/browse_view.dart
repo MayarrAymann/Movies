@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/browse/widgets/category_item.dart';
-import 'package:movies/pages/browse/widgets/genre_view.dart';
 import 'package:provider/provider.dart';
 
 import 'browse_view_model.dart';
+import 'widgets/category_item.dart';
+import 'widgets/genre_view.dart';
 
 class BrowseView extends StatefulWidget {
   const BrowseView({super.key});

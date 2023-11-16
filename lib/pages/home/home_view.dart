@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/home/home_view_model.dart';
-import 'package:movies/pages/home/widgets/new_releases_view_widget.dart';
-import 'package:movies/pages/home/widgets/popular_view_widget.dart';
-import 'package:movies/pages/home/widgets/recommended_view_widget.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/movie_model.dart';
+import 'home_view_model.dart';
+import 'widgets/popular_view_widget.dart';
+import 'widgets/new_releases_view_widget.dart';
+import 'widgets/recommended_view_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -20,10 +19,10 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    vm.getPopularMovieItem();
-    vm.getNewReleasesMovieItem();
-    vm.getRecommendMovieItem();
     super.initState();
+    vm.getPopularMovies();
+    vm.getNewReleasesMovies();
+    vm.getRecommendMovies();
   }
 
   @override

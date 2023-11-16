@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/core/theme/application_theme.dart';
-import 'package:movies/layout/home_layout.dart';
-import 'package:movies/pages/browse/widgets/genre_view.dart';
-import 'package:movies/pages/home/home_detials/home_details_view.dart';
-import 'package:movies/pages/splash/splash_view.dart';
+
+import 'core/theme/application_theme.dart';
 import 'firebase_options.dart';
+import 'layout/home_layout.dart';
+import 'pages/browse/widgets/genre_view.dart';
+import 'pages/home/home_detials/home_details_view.dart';
+import 'pages/splash/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +30,7 @@ class MyApp extends StatelessWidget {
         SplashView.routeName: (context) => const SplashView(),
         HomeLayout.routeName: (context) => const HomeLayout(),
         GenreView.routeName: (context) => GenreView(),
-        HomeDetailsView.routeName: (context) =>  HomeDetailsView(),
-
+        HomeDetailsView.routeName: (context) => HomeDetailsView(),
       },
     );
   }

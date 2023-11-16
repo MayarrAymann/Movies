@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/home/home_detials/similarMoviesView.dart';
 
 import '../../../core/constants.dart';
-import '../../../models/movie_model.dart';
+import '../../../models/details_model.dart';
 import '../home_view_model.dart';
+import 'similar_movies_view.dart';
 
 class HomeDetailsView extends StatelessWidget {
   static String routeName = "home details";
+  HomeViewModel vm = HomeViewModel();
 
-  var vm = HomeViewModel();
-  late final MovieModel detailsModel;
+  HomeDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)?.settings.arguments as MovieModel;
+    var args = ModalRoute.of(context)?.settings.arguments as DetailsModel;
+    print("home details view id: ${args.id}");
+    vm.getSimilarMovies(args.id!);
     var mediaQuery = MediaQuery.of(context);
     var width = mediaQuery.size.width;
     var height = mediaQuery.size.height;
@@ -37,7 +39,7 @@ class HomeDetailsView extends StatelessWidget {
           children: [
             Container(
               width: width,
-              height: 250,
+              height: 200,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -62,12 +64,14 @@ class HomeDetailsView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 10.0),
                   child: Text(
-                    args.releaseDate ?? "",
+                    Constants.getMovieReleaseYear(args.releaseDate!),
                     style: TextStyle(fontSize: 15, color: Colors.grey.shade400),
                   ),
                 ),
-                Text("7 h 2m",
-                    style: TextStyle(fontSize: 15, color: Colors.grey.shade400))
+                Text(
+                  Constants.getMovieDuration(args.runtime!),
+                  style: TextStyle(fontSize: 15, color: Colors.grey.shade400),
+                ),
               ],
             ),
             Padding(
@@ -83,7 +87,12 @@ class HomeDetailsView extends StatelessWidget {
                         height: 250,
                         fit: BoxFit.cover,
                       ),
-                      Image.asset("assets/images/bookmark.png"),
+                      GestureDetector(
+                        onTap: () {
+                          print('Bookmark Pressed');
+                        },
+                        child: Image.asset("assets/images/bookmark.png"),
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -137,7 +146,7 @@ class HomeDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            SimilarMoviesView(),
+            SimilarMoviesView(vm: vm),
           ],
         ),
       ),

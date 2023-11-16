@@ -1,7 +1,7 @@
 import 'movie_model.dart';
 
 class ResponseModel {
-  Map<String, String>? dates;
+  Map<String, dynamic>? dates;
   int? page;
   List<MovieModel>? results;
   int? totalPages;

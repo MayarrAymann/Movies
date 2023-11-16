@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/home/widgets/recommend_movie_item.dart';
 import 'package:provider/provider.dart';
-
+import 'recommend_movie_item.dart';
 import '../home_view_model.dart';
 
 class RecommendedViewWidget extends StatelessWidget {
