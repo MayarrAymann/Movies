@@ -5,8 +5,6 @@ import 'package:movies/models/movie_model.dart';
 import 'package:movies/models/watchlist_model.dart';
 import 'package:movies/pages/watchlist/widgets/watchlist_item.dart';
 
-import '../../core/constants.dart';
-
 class WatchListView extends StatefulWidget {
   const WatchListView({super.key});
 
@@ -15,70 +13,6 @@ class WatchListView extends StatefulWidget {
 }
 
 class _WatchListViewState extends State<WatchListView> {
-  @override
-  void initState() {
-    super.initState();
-    FirestoreUtils.addDataToFirestore(
-      MovieModel(
-        firestoreId: '1',
-        adult: false,
-        backdropPath:
-            '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
-        genreIds: [28, 53],
-        id: 575264,
-        originalLanguage: 'en',
-        originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
-        overview: 'Seventh film in the Mission: Impossible series.',
-        popularity: 2820,
-        posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
-        releaseDate: '2023-07-08',
-        title: 'Mission: Impossible - Dead Reckoning Part One',
-        video: false,
-        voteAverage: 7,
-        voteCount: 2226,
-      ),
-    );
-    FirestoreUtils.addDataToFirestore(
-      MovieModel(
-        firestoreId: '1',
-        adult: false,
-        backdropPath:
-            '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
-        genreIds: [28, 53],
-        id: 575264,
-        originalLanguage: 'en',
-        originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
-        overview: 'Seventh film in the Mission: Impossible series.',
-        popularity: 2820,
-        posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
-        releaseDate: '2023-07-08',
-        title: 'Mission: Impossible - Dead Reckoning Part One',
-        video: false,
-        voteAverage: 7,
-        voteCount: 2226,
-      ),
-    );
-    FirestoreUtils.addDataToFirestore(
-      MovieModel(
-        firestoreId: '1',
-        adult: false,
-        backdropPath:
-            '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
-        genreIds: [28, 53],
-        id: 575264,
-        originalLanguage: 'en',
-        originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
-        overview: 'Seventh film in the Mission: Impossible series.',
-        popularity: 2820,
-        posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
-        releaseDate: '2023-07-08',
-        title: 'Mission: Impossible - Dead Reckoning Part One',
-        video: false,
-        voteAverage: 7,
-        voteCount: 2226,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
