@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../../home/home_detials/home_details_view.dart';
 import '../../../models/genre_model.dart';
 import '../../../pages/browse/browse_view_model.dart';
 import '../../../pages/browse/widgets/movie_item.dart';
@@ -36,21 +36,26 @@ class GenreView extends StatelessWidget {
                           children: [
                             CircularProgressIndicator(
                               color: Color(0xffB5B4B4),
-                              ),
-                            ],
-                          )
-                              : ListView.builder(
-                            itemBuilder: (context, index) =>
-                                MovieItem(model: vm.movies[index]),
-                            itemCount: vm.movies.length,
-                            padding: const EdgeInsets.only(top: 10.0),
-                          ),
+                            ),
+                          ],
+                        )
+                      : ListView.builder(
+                          itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, HomeDetailsView.routeName,
+                                    arguments: vm.movies[index]);
+                              },
+                              child: MovieItem(model: vm.movies[index])),
+                          itemCount: vm.movies.length,
+                          padding: const EdgeInsets.only(top: 10.0),
                         ),
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
+        ),
+      ),
     );
   }
 }

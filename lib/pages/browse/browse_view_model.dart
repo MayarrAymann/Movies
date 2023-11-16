@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
 import '../../core/network_layer/api_manager.dart';
+import '../../core/network_layer/firebase_utils.dart';
 import '../../models/details_model.dart';
 import '../../models/genre_model.dart';
 
@@ -10,7 +11,6 @@ class BrowseViewModel extends ChangeNotifier {
   List<DetailsModel> _movies = [];
 
   List<GenreModel> get genres => _genres;
-
   List<DetailsModel> get movies => _movies;
 
   getGenres() async {
@@ -27,9 +27,18 @@ class BrowseViewModel extends ChangeNotifier {
     try {
       var response =
           await ApiManager.discoverMoviesByGenre(genreId: selectedGenreId);
-      var movies = response.results!;
+
+       var movies = response.results!;
 
       _movies = await Constants.getDetails(movies);
+
+      var favoriteMovies = await FirestoreUtils.getDataFromFirestore();
+
+      for (int i = 0; i < _movies.length; i++) {
+        if (favoriteMovies.contains(_movies[i].id)) {
+          _movies[i].isFavorite = true;
+        }
+      }
 
       notifyListeners();
     } catch (e) {

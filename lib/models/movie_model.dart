@@ -1,7 +1,7 @@
 class MovieModel {
   bool? adult;
   String? backdropPath;
-  List<int>? genreIds = [];
+  List<dynamic>? genreIds = [];
   int? id;
   String? originalLanguage;
   String? originalTitle;
@@ -13,6 +13,7 @@ class MovieModel {
   bool? video;
   num? voteAverage;
   int? voteCount;
+  bool? isFavorite;
 
   MovieModel({
     this.adult,
@@ -29,6 +30,7 @@ class MovieModel {
     this.video,
     this.voteAverage,
     this.voteCount,
+    this.isFavorite = false,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -66,6 +68,7 @@ class MovieModel {
       'video': video,
       'vote_average': voteAverage,
       'vote_count': voteCount,
+      'is_favorite': isFavorite,
     };
   }
 
@@ -73,7 +76,7 @@ class MovieModel {
     return MovieModel(
       adult: json['adult'],
       backdropPath: json['backdrop_path'],
-      genreIds: json['genre_ids'].cast<int>(),
+      genreIds: json['genre_ids'],
       id: json['id'],
       originalLanguage: json['original_language'],
       originalTitle: json['original_title'],
@@ -85,6 +88,7 @@ class MovieModel {
       video: json['video'],
       voteAverage: json['vote_average'],
       voteCount: json['vote_count'],
+      isFavorite: json['is_favorite'],
     );
   }
 }
