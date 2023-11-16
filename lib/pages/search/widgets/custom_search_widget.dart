@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/search/search_view_model.dart';
 
+import '../search_view_model.dart';
 import 'movies_search.dart';
 
 class CustomSearchWidget extends StatelessWidget {

@@ -5,6 +5,8 @@ import 'package:movies/models/movie_model.dart';
 import 'package:movies/pages/browse/widgets/movie_item.dart';
 import '../../core/constants.dart';
 import '../home/home_detials/home_details_view.dart';
+import 'package:movies/models/watchlist_model.dart';
+import 'package:movies/pages/watchlist/widgets/watchlist_item.dart';
 
 class WatchListView extends StatefulWidget {
   const WatchListView({super.key});
@@ -14,6 +16,7 @@ class WatchListView extends StatefulWidget {
 }
 
 class _WatchListViewState extends State<WatchListView> {
+
   @override
   void initState() {
     super.initState();

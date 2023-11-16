@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../browse/widgets/movie_item.dart';
 
 class SearchView extends StatefulWidget {
-  SearchView({super.key});
+  const SearchView({super.key});
 
   @override
   State<SearchView> createState() => _SearchViewState();

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/constants.dart';
-import 'package:movies/models/movie_model.dart';
+import 'package:movies/models/details_model.dart';
 
 class MovieItem extends StatelessWidget {
-  final MovieModel model;
+  final DetailsModel model;
 
   const MovieItem({
     super.key,

@@ -1,13 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:movies/models/details_model.dart';
 import '../../../core/constants.dart';
-import '../../../models/details_model.dart';
-import '../home_detials/home_details_view.dart';
+import 'home_details_view.dart';
 
-class RecommendMovieItem extends StatelessWidget {
+class SimilarMoviesItem extends StatelessWidget {
   final DetailsModel model;
 
-  const RecommendMovieItem({Key? key, required this.model}) : super(key: key);
+  const SimilarMoviesItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -23,44 +23,46 @@ class RecommendMovieItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: Stack(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          HomeDetailsView.routeName,
-                          arguments: model,
-                        );
-                      },
-                      child: Image.network(
-                        "${Constants.imageBaseURL}${model.posterPath}",
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    GestureDetector(
+                child: GestureDetector(
+                  child: Stack(
+                    children: [
+                      GestureDetector(
                         onTap: () {
-                          print('bookmarkPressed');
+                          Navigator.pushNamed(
+                            context,
+                            HomeDetailsView.routeName,
+                            arguments: model,
+                          );
                         },
-                        child:
-                            Image.asset("assets/images/add_to_bookmark.png")),
-                  ],
+                        child: Image.network(
+                          "${Constants.imageBaseURL}${model.posterPath}",
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            print('bookmarkPressed');
+                          },
+                          child:
+                              Image.asset("assets/images/add_to_bookmark.png")),
+                    ],
+                  ),
                 ),
               ),
-               Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                   children: [
-                     const SizedBox(height: 5),
-                     Row(
-                       children: [
-                         const ImageIcon(
-                           AssetImage("assets/images/star_rate.png"),
-                           color: Color(0xffFFBB3B),
-                         ),
-                         Text(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        const ImageIcon(
+                          AssetImage("assets/images/star_rate.png"),
+                          color: Color(0xffFFBB3B),
+                        ),
+                        Text(
                           "${model.voteAverage}",
                           style: const TextStyle(
                               color: Colors.white), // Adjust style as needed
@@ -91,8 +93,8 @@ class RecommendMovieItem extends StatelessWidget {
                       ],
                     ),
                   ],
-                 ),
-               ),
+                ),
+              ),
             ],
           ),
         ),
