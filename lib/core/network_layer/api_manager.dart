@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:movies/core/constants.dart';
+import 'package:movies/models/details_model.dart';
 import 'package:movies/models/movies_list_model.dart';
 
 import '../../models/response_model.dart';
@@ -18,35 +19,41 @@ class ApiManager {
     );
 
     var response = await http.get(uri);
-
     MoviesListModel categories =
         MoviesListModel.fromJson(jsonDecode(response.body));
-
     return categories;
   }
 
   static Future<ResponseModel> fetchPopular() async {
-    Uri url = Uri.https(Constants.baseURL, "/3/movie/popular", {
-      "api_key": Constants.apiKey,
-    });
+    Uri url = Uri.https(
+      Constants.baseURL,
+      Constants.popularEndPoint,
+      {
+        "api_key": Constants.apiKey,
+      },
+    );
+
     var response = await http.get(url);
-
     ResponseModel popular = ResponseModel.fromJson(jsonDecode(response.body));
-
     return popular;
   }
-  static Future<ResponseModel> fetchDetails() async {
-    Uri url = Uri.https(Constants.baseURL, "3/movie/{movie_id} ", {
-      "api_key": Constants.apiKey,
-    });
+
+  static Future<DetailsModel> fetchDetails(int movieId) async {
+    Uri url = Uri.https(
+      Constants.baseURL,
+      '3/movie/$movieId',
+      {
+        "api_key": Constants.apiKey,
+      },
+    );
+
     var response = await http.get(url);
-
-    ResponseModel details = ResponseModel.fromJson(jsonDecode(response.body));
-
+    DetailsModel details = DetailsModel.fromJson(jsonDecode(response.body));
     return details;
   }
 
-  static Future<ResponseModel> discoverMoviesByGenre({required int genreId}) async {
+  static Future<ResponseModel> discoverMoviesByGenre(
+      {required int genreId}) async {
     Uri uri = Uri.https(
       Constants.baseURL,
       Constants.discoverMoviesEndPoint,
@@ -58,10 +65,8 @@ class ApiManager {
     );
 
     var response = await http.get(uri);
-
     ResponseModel moviesByGenre =
         ResponseModel.fromJson(jsonDecode(response.body));
-
     return moviesByGenre;
   }
 
@@ -74,47 +79,49 @@ class ApiManager {
         'query': query,
       },
     );
+
     var response = await http.get(uri);
-
     ResponseModel movies = ResponseModel.fromJson(jsonDecode(response.body));
-
     return movies;
   }
 
-  static Future<ResponseModel> fetchNewReleases() async{
+  static Future<ResponseModel> fetchNewReleases() async {
     Uri url = Uri.http(
-        Constants.baseURL,
-        "/3/movie/upcoming",
+      Constants.baseURL,
+      Constants.newReleaseEndPoint,
       {
         "api_key": Constants.apiKey,
-      }
+      },
     );
+
     var response = await http.get(url);
     ResponseModel model = ResponseModel.fromJson(jsonDecode(response.body));
     return model;
   }
 
-  static Future<ResponseModel> fetchRecommend() async{
+  static Future<ResponseModel> fetchRecommend() async {
     Uri url = Uri.http(
-        Constants.baseURL,
-        "/3/movie/top_rated",
-        {
-          "api_key": Constants.apiKey,
-        }
+      Constants.baseURL,
+      Constants.topRatedEndPoint,
+      {
+        "api_key": Constants.apiKey,
+      },
     );
+
     var response = await http.get(url);
     ResponseModel model = ResponseModel.fromJson(jsonDecode(response.body));
     return model;
   }
 
-  static Future<ResponseModel> fetchSimilar() async{
+  static Future<ResponseModel> fetchSimilar(int? movieId) async {
     Uri url = Uri.http(
-        Constants.baseURL,
-        "3/movie/{movie_id}/similar",
-        {
-          "api_key": Constants.apiKey,
-        }
+      Constants.baseURL,
+      '3/movie/$movieId/similar',
+      {
+        "api_key": Constants.apiKey,
+      },
     );
+
     var response = await http.get(url);
     ResponseModel model = ResponseModel.fromJson(jsonDecode(response.body));
     return model;
