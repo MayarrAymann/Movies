@@ -50,18 +50,20 @@ class NewReleasesViewWidget extends StatelessWidget {
                             Expanded(
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) =>
-                                    GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      HomeDetailsView.routeName,
-                                    );
-                                  },
-                                  child: NewReleasesMovieItem(
-                                    model: vm.newReleaseMovies[index],
-                                  ),
-                                ),
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        HomeDetailsView.routeName,
+                                        arguments: vm.newReleaseMovies[index],
+                                      );
+                                    },
+                                    child: NewReleasesMovieItem(
+                                      model: vm.newReleaseMovies[index],
+                                    ),
+                                  );
+                                },
                                 itemCount: vm.newReleaseMovies.length,
                               ),
                             ),
