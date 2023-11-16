@@ -1,55 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:movies/core/constants.dart';
+
 import '../../core/network_layer/api_manager.dart';
-import '../../models/movie_model.dart';
+import '../../models/details_model.dart';
 
-class HomeViewModel extends ChangeNotifier{
+class HomeViewModel extends ChangeNotifier {
+  List<DetailsModel> _popularMovies = [];
+  List<DetailsModel> _newReleaseMovies = [];
+  List<DetailsModel> _recommendMovies = [];
+  List<DetailsModel> _similarMovies = [];
 
-  List<MovieModel> _popularMovies = [];
-  List<MovieModel> _newReleaseMovies = [];
-  List<MovieModel> _recommendMovies = [];
-  List<MovieModel> _similarMovies = [];
+  List<DetailsModel> get popularMovies => _popularMovies;
 
+  List<DetailsModel> get newReleaseMovies => _newReleaseMovies;
 
-  List<MovieModel> get popularMovies => _popularMovies;
-  List<MovieModel> get newReleaseMovies => _newReleaseMovies;
-  List<MovieModel> get recommendMovies => _recommendMovies;
-  List<MovieModel> get similarMovies => _similarMovies;
+  List<DetailsModel> get recommendMovies => _recommendMovies;
 
-  getPopularMovieItem() async {
+  List<DetailsModel> get similarMovies => _similarMovies;
+
+  getPopularMovies() async {
     try {
       var response = await ApiManager.fetchPopular();
-      _popularMovies = response.results!;
-      notifyListeners();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-  getNewReleasesMovieItem() async {
-    try {
-      var response = await ApiManager.fetchNewReleases();
-      _newReleaseMovies = response.results!;
-      notifyListeners();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-  getRecommendMovieItem() async {
-    try {
-      var response = await ApiManager.fetchRecommend();
-      _recommendMovies = response.results!;
-      notifyListeners();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-  gatSimilarMoviesItem() async {
-    try {
-      var response = await ApiManager.fetchRecommend();
-      _similarMovies = response.results!;
+      var movies = response.results!;
+
+      _popularMovies = await Constants.getDetails(movies);
+
       notifyListeners();
     } catch (e) {
       print(e.toString());
     }
   }
 
+  getNewReleasesMovies() async {
+    try {
+      var response = await ApiManager.fetchNewReleases();
+      var movies = response.results!;
+
+      _newReleaseMovies = await Constants.getDetails(movies);
+
+      notifyListeners();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  getRecommendMovies() async {
+    try {
+      var response = await ApiManager.fetchRecommend();
+      var movies = response.results!;
+
+      _recommendMovies = await Constants.getDetails(movies);
+
+      notifyListeners();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  getSimilarMovies(int? movieId) async {
+    try {
+      var response = await ApiManager.fetchSimilar(movieId!);
+      var movies = response.results!;
+
+      _similarMovies = await Constants.getDetails(movies);
+
+      notifyListeners();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
