@@ -31,12 +31,12 @@ class _HomeViewState extends State<HomeView> {
     return ChangeNotifierProvider(
       create: (context) => vm,
       builder: (context, child) {
-        return const SingleChildScrollView(
+        return SingleChildScrollView(
           child: Column(
             children: [
-              PopularViewWidget(),
-              NewReleasesViewWidget(),
-              RecommendedViewWidget(),
+              PopularViewWidget(vm: vm),
+              NewReleasesViewWidget(vm: vm),
+              RecommendedViewWidget(vm: vm),
             ],
           ),
         );
