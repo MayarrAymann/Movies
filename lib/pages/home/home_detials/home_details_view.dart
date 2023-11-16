@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/pages/home/home_detials/more_of_movies.dart';
+import 'package:movies/pages/home/home_detials/similarMoviesView.dart';
 import '../../../core/constants.dart';
 import '../../../models/movie_model.dart';
 import '../home_view_model.dart';
@@ -127,24 +128,25 @@ class HomeDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              color: Color(0XFF282A28),
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0 , vertical: 5),
-                child: Text("More Like This ",
-                    style: TextStyle(fontSize: 20, color: Colors.white)),
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => More_Of_Movies(
-                  detailsModel: vm.popularMovies[index],
-                ),
-                itemCount: vm.popularMovies.length,
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
+            SimilarMoviesView(),
+            // Container(
+            //   color: Color(0XFF282A28),
+            //   width: double.infinity,
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 8.0 , vertical: 5),
+            //     child: Text("More Like This ",
+            //         style: TextStyle(fontSize: 20, color: Colors.white)),
+            //   ),
+            // ),
+            // Expanded(
+            //   child: ListView.builder(
+            //     itemBuilder: (context, index) => More_Of_Movies(
+            //       detailsModel: vm.popularMovies[index],
+            //     ),
+            //     itemCount: vm.popularMovies.length,
+            //     scrollDirection: Axis.horizontal,
+            //   ),
+            // ),
           ],
       ),
     );

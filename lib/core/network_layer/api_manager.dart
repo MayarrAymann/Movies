@@ -107,5 +107,16 @@ class ApiManager {
     return model;
   }
 
-
+  static Future<ResponseModel> fetchSimilar() async{
+    Uri url = Uri.http(
+        Constants.baseURL,
+        "3/movie/{movie_id}/similar",
+        {
+          "api_key": Constants.apiKey,
+        }
+    );
+    var response = await http.get(url);
+    ResponseModel model = ResponseModel.fromJson(jsonDecode(response.body));
+    return model;
+  }
 }
