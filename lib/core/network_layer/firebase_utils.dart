@@ -24,6 +24,11 @@ class FirestoreUtils {
     return docRef.delete();
   }
 
+  static Future<List<MovieModel>> getDataFromFirestore() async {
+    var snapshot = await getCollection().get();
+    return snapshot.docs.map((element) => element.data()).toList();
+  }
+
   static Stream<QuerySnapshot<MovieModel>> getRealTimeDataFromFirestore() {
     var snapshot = getCollection().snapshots();
     return snapshot;

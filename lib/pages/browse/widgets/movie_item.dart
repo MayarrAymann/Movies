@@ -12,7 +12,6 @@ class MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         Container(
@@ -36,7 +35,9 @@ class MovieItem extends StatelessWidget {
                       Positioned(
                         top: 0,
                         left: 0,
-                        child: Image.asset('assets/images/bookmarked.png'),
+                        child: (model.isFavorite!)
+                            ? Image.asset('assets/images/bookmarked.png')
+                            : Image.asset('assets/images/bookmark.png'),
                       ),
                     ],
                   ),

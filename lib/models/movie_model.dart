@@ -13,6 +13,7 @@ class MovieModel {
   bool? video;
   num? voteAverage;
   int? voteCount;
+  bool? isFavorite;
 
   MovieModel({
     this.adult,
@@ -29,6 +30,7 @@ class MovieModel {
     this.video,
     this.voteAverage,
     this.voteCount,
+    this.isFavorite = false,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -66,6 +68,7 @@ class MovieModel {
       'video': video,
       'vote_average': voteAverage,
       'vote_count': voteCount,
+      'is_favorite': isFavorite,
     };
   }
 
@@ -85,6 +88,7 @@ class MovieModel {
       video: json['video'],
       voteAverage: json['vote_average'],
       voteCount: json['vote_count'],
+      isFavorite: json['is_favorite'],
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../core/network_layer/api_manager.dart';
+import '../../core/network_layer/firebase_utils.dart';
 import '../../models/movie_model.dart';
 
 class SearchViewModel extends ChangeNotifier {
@@ -23,6 +24,14 @@ class SearchViewModel extends ChangeNotifier {
     try {
       var response = await ApiManager.search(query: query);
       _movies = response.results!;
+
+      var favoriteMovies = await FirestoreUtils.getDataFromFirestore();
+
+      for (int i = 0; i < _movies.length; i++) {
+        if (favoriteMovies.contains(_movies[i].id)) {
+          _movies[i].isFavorite = true;
+        }
+      }
 
       notifyListeners();
     } catch (e) {

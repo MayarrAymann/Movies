@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/network_layer/firebase_utils.dart';
 import 'package:movies/models/movie_model.dart';
 import 'package:movies/pages/browse/widgets/movie_item.dart';
-
 import '../../core/constants.dart';
 import '../home/home_detials/home_details_view.dart';
 
@@ -35,6 +34,7 @@ class _WatchListViewState extends State<WatchListView> {
         video: false,
         voteAverage: 7,
         voteCount: 2226,
+        isFavorite: true,
       ),
     );
   }
