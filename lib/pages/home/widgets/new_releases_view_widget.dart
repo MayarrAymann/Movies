@@ -5,21 +5,10 @@ import '../home_detials/home_details_view.dart';
 import '../home_view_model.dart';
 import 'new_releases_movie_item.dart';
 
-class NewReleasesViewWidget extends StatefulWidget {
-  const NewReleasesViewWidget({super.key});
+class NewReleasesViewWidget extends StatelessWidget {
+  HomeViewModel vm;
 
-  @override
-  State<NewReleasesViewWidget> createState() => _NewReleasesViewWidgetState();
-}
-
-class _NewReleasesViewWidgetState extends State<NewReleasesViewWidget> {
-  HomeViewModel vm = HomeViewModel();
-
-  @override
-  void initState() {
-    super.initState();
-    vm.getNewReleasesMovieItem();
-  }
+  NewReleasesViewWidget({super.key, required this.vm});
 
   @override
   Widget build(BuildContext context) {

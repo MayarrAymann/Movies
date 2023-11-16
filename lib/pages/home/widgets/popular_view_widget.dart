@@ -3,23 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:movies/pages/home/home_view_model.dart';
 import 'package:movies/pages/home/widgets/popular_movie_item.dart';
 import 'package:provider/provider.dart';
+
 import '../home_detials/home_details_view.dart';
 
-class PopularViewWidget extends StatefulWidget {
-  const PopularViewWidget({super.key});
+class PopularViewWidget extends StatelessWidget {
+  HomeViewModel vm;
 
-  @override
-  State<PopularViewWidget> createState() => _PopularViewWidgetState();
-}
-
-class _PopularViewWidgetState extends State<PopularViewWidget> {
-  HomeViewModel vm = HomeViewModel();
-
-  @override
-  void initState() {
-    super.initState();
-    vm.getPopularMovieItem();
-  }
+  PopularViewWidget({super.key, required this.vm});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +34,7 @@ class _PopularViewWidgetState extends State<PopularViewWidget> {
                         Navigator.pushNamed(
                           context,
                           HomeDetailsView.routeName,
-                        );
+                            arguments: vm.popularMovies[index]);
                       },
                       child: PopularMovieItem(
                         model: vm.popularMovies[index],
@@ -52,7 +42,7 @@ class _PopularViewWidgetState extends State<PopularViewWidget> {
                     ),
                     itemCount: vm.popularMovies.length,
                     options: CarouselOptions(
-                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayInterval: const Duration(seconds: 10),
                       viewportFraction: 1,
                       height: 330,
                       autoPlay: true,

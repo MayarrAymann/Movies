@@ -4,21 +4,10 @@ import 'package:provider/provider.dart';
 
 import '../home_view_model.dart';
 
-class RecommendedViewWidget extends StatefulWidget {
-  const RecommendedViewWidget({super.key});
+class RecommendedViewWidget extends StatelessWidget {
+  HomeViewModel vm;
 
-  @override
-  State<RecommendedViewWidget> createState() => _RecommendedViewWidgetState();
-}
-
-class _RecommendedViewWidgetState extends State<RecommendedViewWidget> {
-  HomeViewModel vm = HomeViewModel();
-
-  @override
-  void initState() {
-    super.initState();
-    vm.getRecommendMovieItem();
-  }
+  RecommendedViewWidget({super.key, required this.vm});
 
   @override
   Widget build(BuildContext context) {
