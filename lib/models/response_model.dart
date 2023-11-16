@@ -1,12 +1,14 @@
 import 'movie_model.dart';
 
 class ResponseModel {
+  Map<String, String>? dates;
   int? page;
   List<MovieModel>? results;
   int? totalPages;
   int? totalResults;
 
   ResponseModel({
+    this.dates,
     this.page,
     this.results,
     this.totalPages,
@@ -15,6 +17,7 @@ class ResponseModel {
 
   factory ResponseModel.fromJson(Map<String, dynamic> json) {
     return ResponseModel(
+      dates: json['dates'] ?? {},
       page: json['page'],
       results:
           (json['results'] as List).map((e) => MovieModel.fromJson(e)).toList(),
