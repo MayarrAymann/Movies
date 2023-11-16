@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/constants.dart';
-import '../../../models/movie_model.dart';
+import '../../../models/details_model.dart';
 import '../home_detials/home_details_view.dart';
 
 class RecommendMovieItem extends StatelessWidget {
-  final MovieModel model;
+  final DetailsModel model;
 
   const RecommendMovieItem({Key? key, required this.model}) : super(key: key);
 
@@ -22,22 +23,29 @@ class RecommendMovieItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context,
-                        HomeDetailsView.routeName,
-                        arguments: model);
-                  },
-                  child: Stack(
-                    children: [
-                      Image.network(
+                child: Stack(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          HomeDetailsView.routeName,
+                          arguments: model,
+                        );
+                      },
+                      child: Image.network(
                         "${Constants.imageBaseURL}${model.posterPath}",
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),
-                      Image.asset("assets/images/add_to_bookmark.png"),
-                    ],
-                  ),
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          print('bookmarkPressed');
+                        },
+                        child:
+                            Image.asset("assets/images/add_to_bookmark.png")),
+                  ],
                 ),
               ),
                Padding(
@@ -53,23 +61,36 @@ class RecommendMovieItem extends StatelessWidget {
                            color: Color(0xffFFBB3B),
                          ),
                          Text(
-                           "${model.voteAverage}",
-                           style: const TextStyle(color: Colors.white), // Adjust style as needed
-                         ),
-                       ],
-                     ),
-                     Text(
-                       "${model.title}",
-                       style: const TextStyle(color: Colors.white), // Adjust style as needed
-                     ),
-                     const SizedBox(height: 5),
-                     Text(
-                       "${model.releaseDate}",
-                       style: const TextStyle(
-                         color: Color(0XFFB5B4B4),
-                       ), // Adjust style as needed
-                     ),
-                   ],
+                          "${model.voteAverage}",
+                          style: const TextStyle(
+                              color: Colors.white), // Adjust style as needed
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "${model.title}",
+                      style: const TextStyle(
+                          color: Colors.white), // Adjust style as needed
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          Constants.getMovieReleaseYear(model.releaseDate!),
+                          style: const TextStyle(
+                            color: Color(0XFFB5B4B4),
+                          ), // Adjust style as needed
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          Constants.getMovieDuration(model.runtime!),
+                          style: const TextStyle(
+                            color: Color(0XFFB5B4B4),
+                          ), // Adjust style as needed
+                        ),
+                      ],
+                    ),
+                  ],
                  ),
                ),
             ],
