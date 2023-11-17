@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../pages/browse/browse_view.dart';
 import '../pages/home/home_view.dart';
 import '../pages/search/search_view.dart';
-import '../pages/browse/browse_view.dart';
 import '../pages/watchlist/watchlist_view.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -17,10 +18,10 @@ class _HomeLayoutState extends State<HomeLayout> {
   int selectedViewIndex = 0;
 
   List<Widget> views = [
-    const HomeView(),
+    HomeView(),
     SearchView(),
-    const BrowseView(),
-    const WatchListView(),
+    BrowseView(),
+    WatchListView(),
   ];
 
   @override

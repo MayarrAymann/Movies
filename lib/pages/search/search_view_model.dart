@@ -31,8 +31,11 @@ class SearchViewModel extends ChangeNotifier {
       var favoriteMovies = await FirestoreUtils.getDataFromFirestore();
 
       for (int i = 0; i < _movies.length; i++) {
-        if (favoriteMovies.contains(_movies[i].id)) {
-          _movies[i].isFavorite = true;
+        for (int j = 0; j < favoriteMovies.length; j++) {
+          if (_movies[i].id == favoriteMovies[j].id) {
+            _movies[i].isFavorite = true;
+            break;
+          }
         }
       }
 

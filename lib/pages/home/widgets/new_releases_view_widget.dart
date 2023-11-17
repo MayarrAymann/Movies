@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../home_detials/home_details_view.dart';
 import '../home_view_model.dart';
 import 'new_releases_movie_item.dart';
 
 class NewReleasesViewWidget extends StatelessWidget {
-  HomeViewModel vm;
+  final HomeViewModel vm;
 
-  NewReleasesViewWidget({super.key, required this.vm});
+  const NewReleasesViewWidget({
+    super.key,
+    required this.vm,
+  });
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     return ChangeNotifierProvider(
       create: (context) => vm,
       builder: (context, child) {
@@ -51,17 +54,9 @@ class NewReleasesViewWidget extends StatelessWidget {
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        HomeDetailsView.routeName,
-                                        arguments: vm.newReleaseMovies[index],
-                                      );
-                                    },
-                                    child: NewReleasesMovieItem(
-                                      model: vm.newReleaseMovies[index],
-                                    ),
+                                  return NewReleasesMovieItem(
+                                    model: vm.newReleaseMovies[index],
+                                    vm: vm,
                                   );
                                 },
                                 itemCount: vm.newReleaseMovies.length,

@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/pages/home/home_details/home_details_view.dart';
 
 import 'core/theme/application_theme.dart';
 import 'firebase_options.dart';
 import 'layout/home_layout.dart';
 import 'pages/browse/widgets/genre_view.dart';
-import 'pages/home/home_detials/home_details_view.dart';
 import 'pages/splash/splash_view.dart';
 
 void main() async {

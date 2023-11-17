@@ -4,13 +4,14 @@ import 'recommend_movie_item.dart';
 import '../home_view_model.dart';
 
 class RecommendedViewWidget extends StatelessWidget {
-  HomeViewModel vm;
+  final HomeViewModel vm;
 
-  RecommendedViewWidget({super.key, required this.vm});
+  const RecommendedViewWidget({super.key, required this.vm});
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     return ChangeNotifierProvider(
       create: (context) => vm,
       builder: (context, child) {
@@ -58,7 +59,8 @@ class RecommendedViewWidget extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) =>
                                     RecommendMovieItem(
-                                  model: vm.recommendMovies[index],
+                                      model: vm.recommendMovies[index],
+                                  vm: vm,
                                 ),
                                 itemCount: vm.recommendMovies.length,
                               ),

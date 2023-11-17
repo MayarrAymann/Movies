@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../home/home_detials/home_details_view.dart';
+
 import '../../../models/genre_model.dart';
 import '../../../pages/browse/browse_view_model.dart';
 import '../../../pages/browse/widgets/movie_item.dart';
+import '../../home/home_details/home_details_view.dart';
 
 class GenreView extends StatelessWidget {
   static const String routeName = 'genre-view';
