@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../core/constants.dart';
-import '../../../core/network_layer/firebase_utils.dart';
 import '../../../models/details_model.dart';
 import '../home_details/home_details_view.dart';
 import '../home_view_model.dart';
@@ -14,8 +14,8 @@ class RecommendMovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => vm,
+    return ChangeNotifierProvider.value(
+      value: vm,
       builder: (context, child) => Padding(
         padding: const EdgeInsets.all(15),
         child: SizedBox(

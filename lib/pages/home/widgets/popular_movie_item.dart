@@ -19,12 +19,10 @@ class PopularMovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var mediaQuery = MediaQuery.of(context);
-    var width = mediaQuery.size.width;
-    var height = mediaQuery.size.height;
+    var width = MediaQuery.of(context).size.width;
 
-    return ChangeNotifierProvider(
-      create: (context) => vm,
+    return ChangeNotifierProvider.value(
+      value: vm,
       builder: (context, child) => SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

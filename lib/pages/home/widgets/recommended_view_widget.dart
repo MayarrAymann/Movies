@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'recommend_movie_item.dart';
+
 import '../home_view_model.dart';
+import 'recommend_movie_item.dart';
 
 class RecommendedViewWidget extends StatelessWidget {
   final HomeViewModel vm;
@@ -12,8 +13,8 @@ class RecommendedViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return ChangeNotifierProvider(
-      create: (context) => vm,
+    return ChangeNotifierProvider.value(
+      value: vm,
       builder: (context, child) {
         return Consumer<HomeViewModel>(
           builder: (context, vm, child) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/home/home_details/similar_movies_items.dart';
 import 'package:provider/provider.dart';
 
+import '../home_details/similar_movies_items.dart';
 import '../home_view_model.dart';
 
 class SimilarMoviesView extends StatelessWidget {
@@ -16,8 +16,8 @@ class SimilarMoviesView extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return ChangeNotifierProvider(
-      create: (context) => vm,
+    return ChangeNotifierProvider.value(
+      value: vm,
       builder: (context, child) {
         return Consumer<HomeViewModel>(
           builder: (context, vm, child) {
@@ -63,7 +63,8 @@ class SimilarMoviesView extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) =>
                                     SimilarMoviesItem(
-                                  model: vm.similarMovies[index],
+                                      model: vm.similarMovies[index],
+                                  vm: vm,
                                 ),
                                 itemCount: vm.similarMovies.length,
                               ),

@@ -16,8 +16,8 @@ class NewReleasesViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
 
-    return ChangeNotifierProvider(
-      create: (context) => vm,
+    return ChangeNotifierProvider.value(
+      value: vm,
       builder: (context, child) {
         return Consumer<HomeViewModel>(
           builder: (context, vm, child) {

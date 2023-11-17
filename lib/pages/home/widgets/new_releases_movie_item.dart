@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants.dart';
-import '../../../core/network_layer/firebase_utils.dart';
 import '../../../models/details_model.dart';
 import '../home_details/home_details_view.dart';
 import '../home_view_model.dart';
@@ -11,13 +10,16 @@ class NewReleasesMovieItem extends StatelessWidget {
   final DetailsModel model;
   final HomeViewModel vm;
 
-  const NewReleasesMovieItem(
-      {super.key, required this.model, required this.vm});
+  const NewReleasesMovieItem({
+    super.key,
+    required this.model,
+    required this.vm,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => vm,
+    return ChangeNotifierProvider.value(
+      value: vm,
       builder: (context, child) => GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, HomeDetailsView.routeName,

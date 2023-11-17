@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/core/constants.dart';
-
+import '../../core/constants.dart';
 import '../../core/network_layer/api_manager.dart';
 import '../../core/network_layer/firebase_utils.dart';
 import '../../models/details_model.dart';
