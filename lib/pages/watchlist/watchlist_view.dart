@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/core/network_layer/firebase_utils.dart';
-import 'package:movies/models/movie_model.dart';
 import 'package:movies/pages/browse/widgets/movie_item.dart';
+
 import '../../core/constants.dart';
-import '../home/home_detials/home_details_view.dart';
-import 'package:movies/models/watchlist_model.dart';
-import 'package:movies/pages/watchlist/widgets/watchlist_item.dart';
+import '../../models/details_model.dart';
+import '../home/home_details/home_details_view.dart';
 
 class WatchListView extends StatefulWidget {
   const WatchListView({super.key});
@@ -16,16 +15,18 @@ class WatchListView extends StatefulWidget {
 }
 
 class _WatchListViewState extends State<WatchListView> {
-
   @override
   void initState() {
     super.initState();
     FirestoreUtils.addDataToFirestore(
-      MovieModel(
+      DetailsModel(
         adult: false,
         backdropPath:
             '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
-        genreIds: [28, 53],
+        genres: [
+          {"id": 28, "name": "Action"},
+          {"id": 53, "name": "Thriller"}
+        ],
         id: 575264,
         originalLanguage: 'en',
         originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
@@ -60,7 +61,7 @@ class _WatchListViewState extends State<WatchListView> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: StreamBuilder<QuerySnapshot<MovieModel>>(
+            child: StreamBuilder<QuerySnapshot<DetailsModel>>(
               stream: FirestoreUtils.getRealTimeDataFromFirestore(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
