@@ -95,6 +95,7 @@ class PopularMovieItem extends StatelessWidget {
                               const SizedBox(height: 30),
                               Text(
                                 model.originalTitle ?? "",
+                                overflow: TextOverflow.ellipsis,
                                 style: theme.textTheme.bodyLarge,
                                 softWrap: true,
                               ),

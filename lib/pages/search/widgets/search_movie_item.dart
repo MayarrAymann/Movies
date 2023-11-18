@@ -62,7 +62,6 @@ class SearchMovieItem extends StatelessWidget {
                       children: [
                         Text(
                           model.title!,
-                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontFamily: 'Inter',
