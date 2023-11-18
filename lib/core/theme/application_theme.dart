@@ -6,6 +6,10 @@ class ApplicationTheme {
     appBarTheme: const AppBarTheme(
       color: Colors.transparent,
       elevation: 0,
+      iconTheme: IconThemeData(
+        color: Colors.white,
+        size: 30,
+      ),
       centerTitle: true,
       titleTextStyle: TextStyle(
         color: Colors.white,

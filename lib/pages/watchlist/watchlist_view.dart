@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/core/network_layer/firebase_utils.dart';
-import 'package:movies/pages/browse/widgets/movie_item.dart';
+import 'package:movies/pages/watchlist/widgets/watchlist_movie_item.dart';
 
-import '../../core/constants.dart';
 import '../../models/details_model.dart';
 import '../home/home_details/home_details_view.dart';
 
@@ -15,34 +14,6 @@ class WatchListView extends StatefulWidget {
 }
 
 class _WatchListViewState extends State<WatchListView> {
-  @override
-  void initState() {
-    super.initState();
-    FirestoreUtils.addDataToFirestore(
-      DetailsModel(
-        adult: false,
-        backdropPath:
-            '${Constants.imageBaseURL}/h56edmERPTkey89SqyKu4hINVNy.jpg',
-        genres: [
-          {"id": 28, "name": "Action"},
-          {"id": 53, "name": "Thriller"}
-        ],
-        id: 575264,
-        originalLanguage: 'en',
-        originalTitle: 'Mission: Impossible - Dead Reckoning Part One',
-        overview: 'Seventh film in the Mission: Impossible series.',
-        popularity: 2820,
-        posterPath: '${Constants.imageBaseURL}/NNxYkU70HPurnNCSiCjYAmacwm.jpg',
-        releaseDate: '2023-07-08',
-        title: 'Mission: Impossible - Dead Reckoning Part One',
-        video: false,
-        voteAverage: 7,
-        voteCount: 2226,
-        isFavorite: true,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -79,6 +50,7 @@ class _WatchListViewState extends State<WatchListView> {
                         .map((element) => element.data())
                         .toList() ??
                     [];
+                print('MoviesList: ${moviesList.length}');
                 return (moviesList.isEmpty)
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +75,8 @@ class _WatchListViewState extends State<WatchListView> {
                                   context, HomeDetailsView.routeName,
                                   arguments: moviesList[index]);
                             },
-                            child: MovieItem(model: moviesList[index])),
+                            child:
+                                WatchlistMovieItem(model: moviesList[index])),
                         itemCount: moviesList.length,
                         padding: EdgeInsets.zero,
                       );

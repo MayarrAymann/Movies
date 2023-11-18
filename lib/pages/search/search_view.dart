@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies/pages/search/search_view_model.dart';
-import 'package:movies/pages/search/widgets/custom_search_widget.dart';
+import 'package:movies/pages/search/widgets/search_movie_item.dart';
 import 'package:provider/provider.dart';
 
-import '../browse/widgets/movie_item.dart';
+import 'search_view_model.dart';
+import 'widgets/custom_search_widget.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -59,7 +59,10 @@ class _SearchViewState extends State<SearchView> {
                               Expanded(
                                 child: ListView.builder(
                                   itemBuilder: (context, index) =>
-                                      MovieItem(model: vm.movies[index]),
+                                      SearchMovieItem(
+                                    model: vm.movies[index],
+                                    vm: vm,
+                                  ),
                                   itemCount: vm.movies.length,
                                   padding: EdgeInsets.zero,
                                 ),

@@ -48,4 +48,12 @@ class BrowseViewModel extends ChangeNotifier {
       print(e.toString());
     }
   }
+
+  bookmarkButtonPressed(DetailsModel model) {
+    model.isFavorite = !model.isFavorite;
+    (model.isFavorite)
+        ? FirestoreUtils.addDataToFirestore(model)
+        : FirestoreUtils.deleteDataFromFirestore(model);
+    notifyListeners();
+  }
 }

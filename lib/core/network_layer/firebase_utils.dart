@@ -31,6 +31,7 @@ class FirestoreUtils {
 
   static Stream<QuerySnapshot<DetailsModel>> getRealTimeDataFromFirestore() {
     var snapshot = getCollection().snapshots();
+    print('Snapshot: $snapshot');
     return snapshot;
   }
 }

@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../../models/genre_model.dart';
 import '../../../pages/browse/browse_view_model.dart';
-import '../../../pages/browse/widgets/movie_item.dart';
 import '../../home/home_details/home_details_view.dart';
+import 'genre_movie_item.dart';
 
 class GenreView extends StatelessWidget {
   static const String routeName = 'genre-view';
@@ -41,13 +41,14 @@ class GenreView extends StatelessWidget {
                           ],
                         )
                       : ListView.builder(
-                          itemBuilder: (context, index) => GestureDetector(
+                    itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
                                     context, HomeDetailsView.routeName,
                                     arguments: vm.movies[index]);
                               },
-                              child: MovieItem(model: vm.movies[index])),
+                              child: GenreMovieItem(
+                                  model: vm.movies[index], vm: vm)),
                           itemCount: vm.movies.length,
                           padding: const EdgeInsets.only(top: 10.0),
                         ),

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+
 import '../../core/constants.dart';
 import '../../core/network_layer/api_manager.dart';
 import '../../core/network_layer/firebase_utils.dart';
-import '../../models/movie_model.dart';
 import '../../models/details_model.dart';
 
 class SearchViewModel extends ChangeNotifier {
@@ -43,5 +43,13 @@ class SearchViewModel extends ChangeNotifier {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  bookmarkButtonPressed(DetailsModel model) {
+    model.isFavorite = !model.isFavorite;
+    (model.isFavorite)
+        ? FirestoreUtils.addDataToFirestore(model)
+        : FirestoreUtils.deleteDataFromFirestore(model);
+    notifyListeners();
   }
 }

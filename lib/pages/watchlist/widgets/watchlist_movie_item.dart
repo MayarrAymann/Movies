@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/constants.dart';
+import 'package:movies/core/network_layer/firebase_utils.dart';
 import 'package:movies/models/details_model.dart';
+import 'package:movies/pages/search/search_view_model.dart';
+import 'package:provider/provider.dart';
 
-class MovieItem extends StatelessWidget {
+class WatchlistMovieItem extends StatelessWidget {
   final DetailsModel model;
 
-  const MovieItem({
+  const WatchlistMovieItem({
     super.key,
     required this.model,
   });
@@ -22,6 +25,7 @@ class MovieItem extends StatelessWidget {
               Expanded(
                 child: Container(
                   height: 90,
+                  alignment: Alignment.topLeft,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
@@ -30,16 +34,15 @@ class MovieItem extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: (model.isFavorite!)
-                            ? Image.asset('assets/images/bookmarked.png')
-                            : Image.asset('assets/images/bookmark.png'),
-                      ),
-                    ],
+                  child: GestureDetector(
+                    onTap: () {
+                      FirestoreUtils.deleteDataFromFirestore(model);
+                    },
+                    child: Image.asset(
+                      (model.isFavorite)
+                          ? 'assets/images/bookmarked.png'
+                          : 'assets/images/bookmark.png',
+                    ),
                   ),
                 ),
               ),
@@ -53,7 +56,7 @@ class MovieItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        model.title!,
+                        model.title ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -64,22 +67,22 @@ class MovieItem extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        model.releaseDate!,
+                        'Year: ${Constants.getMovieReleaseYear(model.releaseDate ?? '')}',
                         style: const TextStyle(
-                          fontFamily: 'Inter',
-                          color: Colors.white60,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
+                            color: Colors.white), // Adjust style as needed
                       ),
-                      Text(
-                        model.originalLanguage!,
-                        style: const TextStyle(
-                          fontFamily: 'Inter',
-                          color: Colors.white60,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
+                      Row(
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/images/star_rate.png"),
+                            color: Color(0xffFFBB3B),
+                          ),
+                          Text(
+                            "${model.voteAverage}",
+                            style: const TextStyle(
+                                color: Colors.white), // Adjust style as needed
+                          ),
+                        ],
                       ),
                     ],
                   ),
