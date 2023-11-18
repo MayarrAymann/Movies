@@ -86,6 +86,7 @@ class SimilarMoviesItem extends StatelessWidget {
                       ),
                       Text(
                         "${model.title}",
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             color: Colors.white), // Adjust style as needed
                       ),

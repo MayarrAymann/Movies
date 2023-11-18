@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/constants.dart';
 import 'package:movies/core/network_layer/firebase_utils.dart';
 import 'package:movies/models/details_model.dart';
-import 'package:movies/pages/search/search_view_model.dart';
-import 'package:provider/provider.dart';
 
 class WatchlistMovieItem extends StatelessWidget {
   final DetailsModel model;
@@ -57,7 +55,6 @@ class WatchlistMovieItem extends StatelessWidget {
                     children: [
                       Text(
                         model.title ?? '',
-                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontFamily: 'Inter',
