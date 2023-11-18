@@ -109,7 +109,7 @@ class HomeDetailsView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,15 +118,15 @@ class HomeDetailsView extends StatelessWidget {
                           Container(
                             constraints: BoxConstraints(
                               maxHeight:
-                                  ((model.genres!.length) <= 3) ? 40 : 65,
+                                  ((model.genres!.length) <= 3) ? 50 : 75,
                             ),
                             child: GridView.builder(
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
+                                    crossAxisCount: 3,
                                 mainAxisSpacing: 5,
                                 crossAxisSpacing: 5,
-                                childAspectRatio: 6 / 2,
+                                childAspectRatio: 2.2,
                               ),
                               itemBuilder: (context, index) {
                                 return Container(
@@ -142,7 +142,9 @@ class HomeDetailsView extends StatelessWidget {
                                   child: Text(
                                     model.genres?[index]['name'],
                                     style: const TextStyle(
-                                        fontSize: 10, color: Colors.grey),
+                                      fontSize: 10,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 );
                               },
