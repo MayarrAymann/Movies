@@ -40,7 +40,7 @@
 
 &nbsp;
 
-<img src="https://github.com/bstawy/Islami/blob/master/screenshots/QuranTab.gif" width="300" />
+<img src="https://github.com/bstawy/Movies/blob/master/screenshots/home.gif" width="300" />
 <!-- ![image](screenshots/QuranTab.gif =250x250) -->
 
 &nbsp;
@@ -54,7 +54,7 @@
 
 &nbsp;
 
-<img src="https://github.com/bstawy/Islami/blob/master/screenshots/HadethTab.gif" width="300" />
+<img src="https://github.com/bstawy/Movies/blob/master/screenshots/search.gif" width="300" />
 <!-- ![image](screenshots/QuranTab.gif =250x250) -->
 
 &nbsp;
@@ -68,7 +68,7 @@
 
 &nbsp;
 
-<img src="https://github.com/bstawy/Islami/blob/master/screenshots/TasbehTab.gif" width="300" />
+<img src="https://github.com/bstawy/Movies/blob/master/screenshots/browse.gif" width="300" />
 <!-- ![image](screenshots/QuranTab.gif =250x250) -->
 
 &nbsp;
@@ -82,21 +82,7 @@
 
 &nbsp;
 
-<img src="https://github.com/bstawy/Islami/blob/master/screenshots/RadioTab.gif" width="300" />
-<!-- ![image](screenshots/QuranTab.gif =250x250) -->
-
-&nbsp;
-
-
-&nbsp;
-
-**Movie Details:**
-
-&nbsp; &nbsp; &nbsp; All movie's details presented in addition to shows similar movies.
-
-&nbsp;
-
-<img src="https://github.com/bstawy/Islami/blob/master/screenshots/SettingsTab.gif" width="300" />
+<img src="https://github.com/bstawy/Movies/blob/master/screenshots/wishlist.gif" width="300" />
 <!-- ![image](screenshots/QuranTab.gif =250x250) -->
 
 &nbsp;
