@@ -20,7 +20,9 @@
 ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
-**Movies application contaings 4 main screens:**
+&nbsp;
+
+## Movies application contains 4 main screens:
 
 &nbsp; &nbsp; &nbsp; 1. Home.
 
