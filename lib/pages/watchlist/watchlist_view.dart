@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/network_layer/firebase_utils.dart';
 import 'package:movies/pages/watchlist/widgets/watchlist_movie_item.dart';
 
-import '../../models/details_model.dart';
+import '../../models/movie_model.dart';
 import '../home/home_details/home_details_view.dart';
 
 class WatchListView extends StatefulWidget {
@@ -32,7 +32,7 @@ class _WatchListViewState extends State<WatchListView> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: StreamBuilder<QuerySnapshot<DetailsModel>>(
+            child: StreamBuilder<QuerySnapshot<MovieModel>>(
               stream: FirestoreUtils.getRealTimeDataFromFirestore(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {

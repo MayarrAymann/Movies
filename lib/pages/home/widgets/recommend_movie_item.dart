@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants.dart';
-import '../../../models/details_model.dart';
+import '../../../models/movie_model.dart';
 import '../home_details/home_details_view.dart';
 import '../home_view_model.dart';
 
 class RecommendMovieItem extends StatelessWidget {
-  final DetailsModel model;
+  final MovieModel model;
   final HomeViewModel vm;
 
   const RecommendMovieItem({super.key, required this.model, required this.vm});
@@ -51,7 +51,7 @@ class RecommendMovieItem extends StatelessWidget {
                               vm.bookmarkButtonPressed(model);
                             },
                             child: Image.asset(
-                              (model.isFavorite)
+                              (model.isFavorite!)
                                   ? 'assets/images/bookmarked.png'
                                   : 'assets/images/bookmark.png',
                             ),
@@ -87,22 +87,11 @@ class RecommendMovieItem extends StatelessWidget {
                             color: Colors.white), // Adjust style as needed
                       ),
                       const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Text(
-                            Constants.getMovieReleaseYear(model.releaseDate!),
-                            style: const TextStyle(
-                              color: Color(0XFFB5B4B4),
-                            ), // Adjust style as needed
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            Constants.getMovieDuration(model.runtime!),
-                            style: const TextStyle(
-                              color: Color(0XFFB5B4B4),
-                            ), // Adjust style as needed
-                          ),
-                        ],
+                      Text(
+                        Constants.getMovieReleaseYear(model.releaseDate!),
+                        style: const TextStyle(
+                          color: Color(0XFFB5B4B4),
+                        ), // Adjust style as needed
                       ),
                     ],
                   ),
