@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants.dart';
-import '../../../models/details_model.dart';
+import '../../../models/movie_model.dart';
 import '../home_details/home_details_view.dart';
 import '../home_view_model.dart';
 
 class NewReleasesMovieItem extends StatelessWidget {
-  final DetailsModel model;
+  final MovieModel model;
   final HomeViewModel vm;
 
   const NewReleasesMovieItem({
@@ -47,7 +47,7 @@ class NewReleasesMovieItem extends StatelessWidget {
                       vm.bookmarkButtonPressed(model);
                     },
                     child: Image.asset(
-                      (model.isFavorite)
+                      (model.isFavorite!)
                           ? 'assets/images/bookmarked.png'
                           : 'assets/images/bookmark.png',
                     ),

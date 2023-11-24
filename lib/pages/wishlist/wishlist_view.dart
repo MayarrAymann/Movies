@@ -1,19 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/core/network_layer/firebase_utils.dart';
-import 'package:movies/pages/watchlist/widgets/watchlist_movie_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../core/network_layer/firebase_utils.dart';
+import '../../../pages/wishlist/widgets/wishlist_movie_item.dart';
 
-import '../../models/details_model.dart';
+import '../../models/movie_model.dart';
 import '../home/home_details/home_details_view.dart';
 
-class WatchListView extends StatefulWidget {
-  const WatchListView({super.key});
+class WishListView extends StatefulWidget {
+  const WishListView({super.key});
 
   @override
-  State<WatchListView> createState() => _WatchListViewState();
+  State<WishListView> createState() => _WishListViewState();
 }
 
-class _WatchListViewState extends State<WatchListView> {
+class _WishListViewState extends State<WishListView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +22,7 @@ class _WatchListViewState extends State<WatchListView> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text(
-            'Watchlist',
+            'Wishlist',
             style: TextStyle(
               fontFamily: 'Inter',
               color: Colors.white,
@@ -32,7 +32,7 @@ class _WatchListViewState extends State<WatchListView> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: StreamBuilder<QuerySnapshot<DetailsModel>>(
+            child: StreamBuilder<QuerySnapshot<MovieModel>>(
               stream: FirestoreUtils.getRealTimeDataFromFirestore(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
@@ -47,17 +47,17 @@ class _WatchListViewState extends State<WatchListView> {
                   return const Center(child: CircularProgressIndicator());
                 }
                 var moviesList = snapshot.data?.docs
-                        .map((element) => element.data())
-                        .toList() ??
+                    .map((element) => element.data())
+                    .toList() ??
                     [];
                 print('MoviesList: ${moviesList.length}');
                 return (moviesList.isEmpty)
                     ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
                           Image.asset('assets/images/search_body.png'),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 5),
                           const Text(
                             "No Movies Found",
                             style: TextStyle(
@@ -67,7 +67,7 @@ class _WatchListViewState extends State<WatchListView> {
                             textAlign: TextAlign.center,
                           ),
                         ],
-                      )
+                )
                     : ListView.builder(
                   itemBuilder: (context, index) => GestureDetector(
                             onTap: () {
@@ -77,9 +77,9 @@ class _WatchListViewState extends State<WatchListView> {
                             },
                             child:
                                 WatchlistMovieItem(model: moviesList[index])),
-                        itemCount: moviesList.length,
-                        padding: EdgeInsets.zero,
-                      );
+                  itemCount: moviesList.length,
+                  padding: EdgeInsets.zero,
+                );
               },
             ),
           ),

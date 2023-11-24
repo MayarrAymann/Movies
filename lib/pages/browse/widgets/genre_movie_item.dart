@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/constants.dart';
-import 'package:movies/models/details_model.dart';
+import 'package:movies/models/movie_model.dart';
 import 'package:movies/pages/browse/browse_view_model.dart';
 import 'package:provider/provider.dart';
 
 class GenreMovieItem extends StatelessWidget {
   final BrowseViewModel vm;
-  final DetailsModel model;
+  final MovieModel model;
 
   const GenreMovieItem({
     super.key,
@@ -43,7 +43,7 @@ class GenreMovieItem extends StatelessWidget {
                           vm.bookmarkButtonPressed(model);
                         },
                         child: Image.asset(
-                          (model.isFavorite)
+                          (model.isFavorite!)
                               ? 'assets/images/bookmarked.png'
                               : 'assets/images/bookmark.png',
                         ),
@@ -84,22 +84,11 @@ class GenreMovieItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              Constants.getMovieReleaseYear(model.releaseDate!),
-                              style: const TextStyle(
-                                color: Color(0XFFB5B4B4),
-                              ), // Adjust style as needed
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              Constants.getMovieDuration(model.runtime!),
-                              style: const TextStyle(
-                                color: Color(0XFFB5B4B4),
-                              ), // Adjust style as needed
-                            ),
-                          ],
+                        Text(
+                          Constants.getMovieReleaseYear(model.releaseDate!),
+                          style: const TextStyle(
+                            color: Color(0XFFB5B4B4),
+                          ), // Adjust style as needed
                         ),
                       ],
                     ),

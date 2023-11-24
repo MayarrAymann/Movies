@@ -4,15 +4,19 @@ import 'package:flutter/foundation.dart';
 import '../../core/constants.dart';
 import '../../core/network_layer/api_manager.dart';
 import '../../core/network_layer/firebase_utils.dart';
-import '../../models/details_model.dart';
+import '../../models/movie_model.dart';
 
 class SearchViewModel extends ChangeNotifier {
   String _searchQuery = '';
-  List<DetailsModel> _movies = [];
+  List<MovieModel> _movies = [];
 
   String get searchQuery => _searchQuery;
 
-  List<DetailsModel> get movies => _movies;
+  List<MovieModel> get movies => _movies;
+
+  SearchViewModel() {
+    Constants.getFavoriteMovies();
+  }
 
   changeSearchQuery(String query) {
     _searchQuery = query;
@@ -24,15 +28,11 @@ class SearchViewModel extends ChangeNotifier {
 
     try {
       var response = await ApiManager.search(query: query);
-      var movies = response.results!;
-
-      _movies = await Constants.getDetails(movies);
-
-      var favoriteMovies = await FirestoreUtils.getDataFromFirestore();
+      _movies = response.results!;
 
       for (int i = 0; i < _movies.length; i++) {
-        for (int j = 0; j < favoriteMovies.length; j++) {
-          if (_movies[i].id == favoriteMovies[j].id) {
+        for (int j = 0; j < Constants.favoriteMovies.length; j++) {
+          if (_movies[i].id == Constants.favoriteMovies[j].id) {
             _movies[i].isFavorite = true;
             break;
           }
@@ -45,11 +45,11 @@ class SearchViewModel extends ChangeNotifier {
     }
   }
 
-  bookmarkButtonPressed(DetailsModel model) {
-    model.isFavorite = !model.isFavorite;
-    (model.isFavorite)
+  bookmarkButtonPressed(MovieModel model) async {
+    model.isFavorite = !(model.isFavorite!);
+    (model.isFavorite!)
         ? FirestoreUtils.addDataToFirestore(model)
-        : FirestoreUtils.deleteDataFromFirestore(model);
+        : FirestoreUtils.deleteDataFromFirestore(model.id!);
     notifyListeners();
   }
 }

@@ -1,3 +1,5 @@
+import 'package:movies/core/network_layer/firebase_utils.dart';
+
 import '../models/details_model.dart';
 import '../models/movie_model.dart';
 import 'network_layer/api_manager.dart';
@@ -21,6 +23,16 @@ class Constants {
 
   static const String imageBaseURL = 'https://image.tmdb.org/t/p/w500';
 
+  static List<MovieModel> favoriteMovies = [];
+
+  static getFavoriteMovies() async {
+    favoriteMovies = await FirestoreUtils.getDataFromFirestore();
+  }
+
+  static Future<DetailsModel> getMovieDetails(MovieModel movie) async {
+    return await ApiManager.fetchDetails(movie.id!);
+  }
+
   static String getMovieDuration(int durationInMinutes) {
     Duration duration = Duration(minutes: durationInMinutes);
 
@@ -32,17 +44,5 @@ class Constants {
 
   static String getMovieReleaseYear(String releaseDate) {
     return releaseDate.split('-')[0];
-  }
-
-  static Future<List<DetailsModel>> getDetails(List<MovieModel> movies) async {
-    DetailsModel movie;
-    List<DetailsModel> resultMovies = [];
-
-    for (int i = 0; i < movies.length; i++) {
-      movie = await ApiManager.fetchDetails(movies[i].id!);
-      resultMovies.add(movie);
-    }
-
-    return resultMovies;
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movies/models/details_model.dart';
 import 'package:movies/pages/home/home_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants.dart';
+import '../../../models/movie_model.dart';
 import 'home_details_view.dart';
 
 class SimilarMoviesItem extends StatelessWidget {
-  final DetailsModel model;
+  final MovieModel model;
   final HomeViewModel vm;
 
   const SimilarMoviesItem({
@@ -55,7 +55,7 @@ class SimilarMoviesItem extends StatelessWidget {
                               vm.bookmarkButtonPressed(model);
                             },
                             child: Image.asset(
-                              (model.isFavorite)
+                              (model.isFavorite!)
                                   ? 'assets/images/bookmarked.png'
                                   : 'assets/images/bookmark.png',
                             ),
@@ -91,22 +91,11 @@ class SimilarMoviesItem extends StatelessWidget {
                             color: Colors.white), // Adjust style as needed
                       ),
                       const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Text(
-                            Constants.getMovieReleaseYear(model.releaseDate!),
-                            style: const TextStyle(
-                              color: Color(0XFFB5B4B4),
-                            ), // Adjust style as needed
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            Constants.getMovieDuration(model.runtime!),
-                            style: const TextStyle(
-                              color: Color(0XFFB5B4B4),
-                            ), // Adjust style as needed
-                          ),
-                        ],
+                      Text(
+                        Constants.getMovieReleaseYear(model.releaseDate!),
+                        style: const TextStyle(
+                          color: Color(0XFFB5B4B4),
+                        ), // Adjust style as needed
                       ),
                     ],
                   ),
