@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
+import '../pages/browse/browse_view.dart';
 import '../pages/home/home_view.dart';
 import '../pages/search/search_view.dart';
-import '../pages/browse/browse_view.dart';
-import '../pages/watchlist/watchlist_view.dart';
+import '../pages/wishlist/wishlist_view.dart';
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = 'home-layout';
@@ -20,7 +21,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     HomeView(),
     SearchView(),
     BrowseView(),
-    WatchListView(),
+    WishListView(),
   ];
 
   @override
